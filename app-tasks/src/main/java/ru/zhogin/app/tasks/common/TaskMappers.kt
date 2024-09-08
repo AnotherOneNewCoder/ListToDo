@@ -12,6 +12,7 @@ internal fun TaskDbo.toTask(): Task {
         priority = priority,
         done = done,
         date = date,
+        doneDate = doneDate,
     )
 }
 
@@ -23,6 +24,7 @@ internal fun Task.toTaskDbo(): TaskDbo {
         priority = priority,
         done = done,
         date = date,
+        doneDate = doneDate,
     )
 }
 
@@ -34,6 +36,7 @@ internal fun Task.toTaskUi(): TaskUI {
         priority = priority,
         done = done,
         date = date,
+        doneDate = doneDate,
     )
 }
 
@@ -45,5 +48,6 @@ internal fun TaskUI.toTask(): Task {
         priority = priority,
         done = done,
         date = date,
+        doneDate = doneDate,
     )
 }

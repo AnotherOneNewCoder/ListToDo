@@ -6,46 +6,34 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.hilt.navigation.compose.hiltViewModel
+import dagger.hilt.android.AndroidEntryPoint
+import ru.zhogin.app.tasks.presentation.ui.screens.PublicNotDoneTaskScreen
+import ru.zhogin.app.tasks.presentation.viewmodel.PublicTasksViewModel
 import ru.zhogin.app.uikit.ListToDoTheme
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
             ListToDoTheme {
+                val viewmodel: PublicTasksViewModel = hiltViewModel()
+                val state = viewmodel.stateByDate.collectAsState()
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
+                    PublicNotDoneTaskScreen(
+                        modifier = Modifier.padding(innerPadding),
+                        state = state.value,
+                        newTask = viewmodel.newTask,
+                        onEvent = viewmodel::onEvent
                     )
-                    LazyColumn {
-
-                    }
                 }
             }
         }
     }
 }
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    ListToDoTheme {
-        Greeting("Android")
-    }
-}

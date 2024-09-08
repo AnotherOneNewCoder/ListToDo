@@ -71,4 +71,5 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 
     implementation(project(":app-uikit"))
+    implementation(project(":app-tasks"))
 }

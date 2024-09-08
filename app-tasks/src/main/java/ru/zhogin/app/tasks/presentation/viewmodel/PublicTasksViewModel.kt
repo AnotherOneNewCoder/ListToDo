@@ -1,4 +1,4 @@
-package ru.zhogin.app.tasks.presentation
+package ru.zhogin.app.tasks.presentation.viewmodel
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -26,10 +26,10 @@ import javax.inject.Inject
 
 @HiltViewModel
 class PublicTasksViewModel @Inject constructor(
-    private val getAllTasksByDate : GetAllPublicTasksByDateUseCase,
-    private val getAllTasksByPriority : GetAllPublicTasksByPriorityUseCase,
-    private val insertPublicTask : InsertPublicTaskUseCase,
-    private val deletePublicTask : DeletePublicTaskUseCase,
+    private val getAllTasksByDate: GetAllPublicTasksByDateUseCase,
+    private val getAllTasksByPriority: GetAllPublicTasksByPriorityUseCase,
+    private val insertPublicTask: InsertPublicTaskUseCase,
+    private val deletePublicTask: DeletePublicTaskUseCase,
 ) : ViewModel() {
     private val _state = MutableStateFlow(PublicTasksListState())
     val stateByDate = combine(
@@ -44,7 +44,7 @@ class PublicTasksViewModel @Inject constructor(
     var newTask: TaskUI? by mutableStateOf(null)
 
     fun onEvent(event: PublicTasksListEvent) {
-        when(event) {
+        when (event) {
             PublicTasksListEvent.DeletePublicTask -> {
                 viewModelScope.launch {
                     _state.value.selectedTask?.id?.let { id ->
@@ -63,6 +63,7 @@ class PublicTasksViewModel @Inject constructor(
                     }
                 }
             }
+
             PublicTasksListEvent.DismissPublicTasks -> {
                 viewModelScope.launch {
                     _state.update {
@@ -79,6 +80,7 @@ class PublicTasksViewModel @Inject constructor(
                     }
                 }
             }
+
             is PublicTasksListEvent.EditPublicTask -> {
                 _state.update {
                     it.copy(
@@ -89,6 +91,7 @@ class PublicTasksViewModel @Inject constructor(
                 }
                 newTask = event.task
             }
+
             PublicTasksListEvent.OnAddNewPublicTaskClick -> {
                 _state.update {
                     it.copy(
@@ -97,31 +100,34 @@ class PublicTasksViewModel @Inject constructor(
                 }
                 newTask = emptyTask
             }
+
             is PublicTasksListEvent.OnDescriptionChanged -> {
                 newTask = newTask?.copy(
                     description = event.value
                 )
             }
+
             is PublicTasksListEvent.OnDoneChanged -> {
                 newTask = newTask?.copy(
                     done = event.value
                 )
             }
+
             is PublicTasksListEvent.OnPriorityChanged -> {
                 newTask = newTask?.copy(
                     priority = event.value
                 )
             }
+
             is PublicTasksListEvent.OnTitleChanged -> {
                 newTask = newTask?.copy(
                     title = event.value
                 )
             }
+
             PublicTasksListEvent.SavePublicTask -> {
                 newTask?.let { task ->
-                    newTask = newTask?.copy(
-                        date = System.currentTimeMillis()
-                    )
+
                     if (task.title.isNotBlank()) {
                         _state.update {
                             it.copy(
@@ -130,7 +136,10 @@ class PublicTasksViewModel @Inject constructor(
                             )
                         }
                         viewModelScope.launch {
-                            insertPublicTask(task.toTask())
+                            newTask = newTask?.copy(
+                                date = System.currentTimeMillis()
+                            )
+                            newTask?.toTask()?.let { insertPublicTask(it) }
                             delay(500L)
                             newTask = null
                         }
@@ -144,6 +153,7 @@ class PublicTasksViewModel @Inject constructor(
                     }
                 }
             }
+
             is PublicTasksListEvent.SelectPublicTask -> {
                 _state.update {
                     it.copy(
@@ -163,4 +173,5 @@ private val emptyTask = TaskUI(
     priority = 0,
     done = false,
     date = 0L,
+    doneDate = 0L,
 )

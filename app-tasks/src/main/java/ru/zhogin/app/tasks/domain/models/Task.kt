@@ -8,5 +8,6 @@ data class Task(
     val priority: Int,
     val done: Boolean,
     val date: Long,
+    val doneDate: Long,
 )
 

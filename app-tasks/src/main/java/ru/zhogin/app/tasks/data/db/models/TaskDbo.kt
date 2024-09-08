@@ -18,4 +18,6 @@ data class TaskDbo (
     val done: Boolean,
     @ColumnInfo("date")
     val date: Long,
+    @ColumnInfo("done_date")
+    val doneDate: Long,
 )

@@ -1,5 +1,6 @@
 package ru.zhogin.app.uikit
 
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Typography
 import androidx.compose.runtime.Composable
 
@@ -48,7 +49,7 @@ val Typography.Title1: TextStyle
             fontFamily = SFFont,
             fontWeight = FontWeight.SemiBold,
             fontSize = 29.sp,
-            color = White
+            color = MaterialTheme.colorScheme.primary
         )
     }
 
@@ -59,7 +60,7 @@ val Typography.Title2: TextStyle
             fontFamily = SFFont,
             fontWeight = FontWeight.SemiBold,
             fontSize = 27.sp,
-            color = White
+            color = MaterialTheme.colorScheme.primary
         )
     }
 val Typography.Title3: TextStyle
@@ -69,7 +70,7 @@ val Typography.Title3: TextStyle
             fontFamily = SFFont,
             fontWeight = FontWeight.Medium,
             fontSize = 21.sp,
-            color = White
+            color = MaterialTheme.colorScheme.primary
         )
     }
 val Typography.Title4: TextStyle
@@ -79,7 +80,7 @@ val Typography.Title4: TextStyle
             fontFamily = SFFont,
             fontWeight = FontWeight.Medium,
             fontSize = 19.sp,
-            color = White
+            color = MaterialTheme.colorScheme.primary
         )
     }
 val Typography.Text1: TextStyle
@@ -89,7 +90,7 @@ val Typography.Text1: TextStyle
             fontFamily = SFFont,
             fontWeight = FontWeight.Normal,
             fontSize = 19.sp,
-            color = White
+            color = MaterialTheme.colorScheme.primary
         )
     }
 val Typography.ButtonText1: TextStyle
@@ -99,7 +100,7 @@ val Typography.ButtonText1: TextStyle
             fontFamily = SFFont,
             fontWeight = FontWeight.SemiBold,
             fontSize = 21.sp,
-            color = White
+            color = MaterialTheme.colorScheme.primary
         )
     }
 val Typography.ButtonText2: TextStyle
@@ -109,7 +110,7 @@ val Typography.ButtonText2: TextStyle
             fontFamily = SFFont,
             fontWeight = FontWeight.Normal,
             fontSize = 19.sp,
-            color = White
+            color = MaterialTheme.colorScheme.primary
         )
     }
 val Typography.TabText: TextStyle
@@ -119,7 +120,7 @@ val Typography.TabText: TextStyle
             fontFamily = SFFont,
             fontWeight = FontWeight.Normal,
             fontSize = 13.sp,
-            color = White
+            color = MaterialTheme.colorScheme.primary
         )
     }
 val Typography.Number: TextStyle
@@ -129,6 +130,6 @@ val Typography.Number: TextStyle
             fontFamily = SFFont,
             fontWeight = FontWeight.Normal,
             fontSize = 9.sp,
-            color = White
+            color = MaterialTheme.colorScheme.primary
         )
     }

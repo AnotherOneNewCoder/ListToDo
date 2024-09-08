@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import kotlinx.coroutines.flow.Flow
 import ru.zhogin.app.tasks.data.db.models.TaskDbo
 
 @Dao
@@ -11,8 +12,11 @@ interface TaskDao {
     @Query("SELECT * FROM public_tasks ORDER BY priority DESC")
     suspend fun getAllPublicTasksByPriority() : List<TaskDbo>
 
+//    @Query("SELECT * FROM public_tasks ORDER BY date DESC")
+//    suspend fun getAllPublicTasksByDate() : List<TaskDbo>
+
     @Query("SELECT * FROM public_tasks ORDER BY date DESC")
-    suspend fun getAllPublicTasksByDate() : List<TaskDbo>
+    fun getAllPublicTasksByDate() : Flow<List<TaskDbo>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertPublicTask(taskDbo: TaskDbo)
