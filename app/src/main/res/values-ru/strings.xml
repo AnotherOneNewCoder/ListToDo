@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ListToDo</string>
+    <string name="in_progress">Активные</string>
+    <string name="tasks_done_text">Выполненые</string>
+    <string name="settings_text">Настройки</string>
+</resources>

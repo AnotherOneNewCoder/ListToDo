@@ -1,7 +1,5 @@
 package ru.zhogin.app.tasks.presentation.ui.dialogs
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -12,8 +10,8 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.rounded.List
 import androidx.compose.material.icons.rounded.Close
-import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
@@ -23,21 +21,20 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import ru.zhogin.app.tasks.presentation.event.PublicTasksListEvent
 import ru.zhogin.app.tasks.presentation.models.TaskUI
-import ru.zhogin.app.tasks.presentation.state.PublicTasksListState
-import ru.zhogin.app.tasks.presentation.ui.components.TaskTextField
+import ru.zhogin.app.tasks.presentation.ui.components.EditRow
+import ru.zhogin.app.tasks.presentation.ui.components.TaskInfoSection
 import ru.zhogin.app.uikit.Title1
 
 @Composable
-internal fun AddTaskSheet(
+fun DetailTaskSheet(
     onDismissRequest: () -> Unit,
-    state: PublicTasksListState,
-    newTask: TaskUI?,
+    selectedTask: TaskUI?,
     onEvent: (PublicTasksListEvent) -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -49,7 +46,8 @@ internal fun AddTaskSheet(
     ) {
         Card(
             modifier = modifier
-                .fillMaxSize().padding(horizontal = 16.dp),
+                .fillMaxSize()
+                .padding(16.dp),
             shape = RoundedCornerShape(20.dp),
             colors = CardDefaults.cardColors(
                 containerColor = MaterialTheme.colorScheme.surface
@@ -71,37 +69,37 @@ internal fun AddTaskSheet(
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
                 Spacer(modifier = Modifier.height(30.dp))
-                Text(
-                    text = "Create new task: ",
-                    style = MaterialTheme.typography.Title1
-                )
-                Spacer(modifier = Modifier.height(16.dp))
-                TaskTextField(
-                    value = newTask?.title ?: "",
-                    placeHolder = "Title",
-                    error = state.validationTitleError,
-                    onValueChanged = { onEvent(PublicTasksListEvent.OnTitleChanged(it)) },
-                    modifier = Modifier.fillMaxWidth()
-                )
-                Spacer(modifier = Modifier.height(16.dp))
-                TaskTextField(
-                    value = newTask?.description ?: "",
-                    placeHolder = "Description",
-                    error = null,
-                    onValueChanged = { onEvent(PublicTasksListEvent.OnDescriptionChanged(it)) },
-                    modifier = Modifier.fillMaxWidth()
-                )
-                Spacer(modifier = Modifier.height(16.dp))
-                Button(onClick = {
-                    onEvent(PublicTasksListEvent.SavePublicTask)
-                })
-                {
-                    Text(text = "Save")
+                if (selectedTask != null) {
+                    Text(
+                        text = selectedTask.title,
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier.fillMaxWidth(),
+                        style = MaterialTheme.typography.Title1
+                    )
                 }
                 Spacer(modifier = Modifier.height(16.dp))
+                EditRow(
+                    onEditClick = {
+                        selectedTask?.let {
+                            onEvent(PublicTasksListEvent.EditPublicTask(it))
+                        }
+                },
+                    onDeleteClick = {
+                        onEvent(PublicTasksListEvent.DeletePublicTask)
+                    },
+                    onDoneClick = {
+                        selectedTask?.let {
+                            onEvent(PublicTasksListEvent.ChangeDoneStatusPublicTask(it))
+                        }
 
+                    })
+                Spacer(modifier = Modifier.height(16.dp))
+                TaskInfoSection(
+                    title = "Description",
+                    value = selectedTask?.description ?: "",
+                    icon = Icons.AutoMirrored.Rounded.List,
+                )
             }
-
         }
     }
 }

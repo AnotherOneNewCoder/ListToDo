@@ -13,4 +13,5 @@ sealed interface PublicTasksListEvent {
     data class SelectPublicTask(val task: TaskUI): PublicTasksListEvent
     data class EditPublicTask(val task: TaskUI): PublicTasksListEvent
     data object DeletePublicTask: PublicTasksListEvent
+    data class ChangeDoneStatusPublicTask(val task: TaskUI): PublicTasksListEvent
 }

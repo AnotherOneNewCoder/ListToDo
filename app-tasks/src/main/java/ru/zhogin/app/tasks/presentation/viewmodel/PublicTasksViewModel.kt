@@ -16,7 +16,8 @@ import kotlinx.coroutines.launch
 import ru.zhogin.app.tasks.common.toTask
 import ru.zhogin.app.tasks.common.toTaskUi
 import ru.zhogin.app.tasks.domain.usecases.DeletePublicTaskUseCase
-import ru.zhogin.app.tasks.domain.usecases.GetAllPublicTasksByDateUseCase
+import ru.zhogin.app.tasks.domain.usecases.GetAllPublicDoneTasksByDateUseCase
+import ru.zhogin.app.tasks.domain.usecases.GetAllPublicNotDoneTasksByDateUseCase
 import ru.zhogin.app.tasks.domain.usecases.GetAllPublicTasksByPriorityUseCase
 import ru.zhogin.app.tasks.domain.usecases.InsertPublicTaskUseCase
 import ru.zhogin.app.tasks.presentation.event.PublicTasksListEvent
@@ -26,7 +27,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class PublicTasksViewModel @Inject constructor(
-    private val getAllTasksByDate: GetAllPublicTasksByDateUseCase,
+    getAllTasksByDate: GetAllPublicNotDoneTasksByDateUseCase,
+    getAllDoneTasksByDate: GetAllPublicDoneTasksByDateUseCase,
     private val getAllTasksByPriority: GetAllPublicTasksByPriorityUseCase,
     private val insertPublicTask: InsertPublicTaskUseCase,
     private val deletePublicTask: DeletePublicTaskUseCase,
@@ -40,6 +42,17 @@ class PublicTasksViewModel @Inject constructor(
             tasks = tasks.map { it.toTaskUi() }
         )
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000L), PublicTasksListState())
+
+    private val _stateDone = MutableStateFlow(PublicTasksListState())
+    val stateByDateDone = combine(
+        _stateDone,
+        getAllDoneTasksByDate()
+    ) { state, tasks ->
+        state.copy(
+            tasks = tasks.map { it.toTaskUi() }
+        )
+    }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000L), PublicTasksListState())
+
 
     var newTask: TaskUI? by mutableStateOf(null)
 
@@ -162,6 +175,25 @@ class PublicTasksViewModel @Inject constructor(
                     )
                 }
             }
+
+            is PublicTasksListEvent.ChangeDoneStatusPublicTask ->
+                viewModelScope.launch {
+                    val task = event.task.copy(
+                        done = !event.task.done,
+                        doneDate = System.currentTimeMillis(),
+                    )
+                    insertPublicTask(task.toTask())
+                    delay(500L)
+                    newTask = null
+
+                    _state.update {
+                        it.copy(
+                            isSelectedTaskSheetOpen = false,
+                            isAddTaskSheetOpen = false,
+                            validationTitleError = null
+                        )
+                    }
+                }
         }
     }
 }

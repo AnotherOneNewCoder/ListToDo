@@ -15,8 +15,11 @@ interface TaskDao {
 //    @Query("SELECT * FROM public_tasks ORDER BY date DESC")
 //    suspend fun getAllPublicTasksByDate() : List<TaskDbo>
 
-    @Query("SELECT * FROM public_tasks ORDER BY date DESC")
-    fun getAllPublicTasksByDate() : Flow<List<TaskDbo>>
+    @Query("SELECT * FROM public_tasks WHERE done = 0 ORDER BY date DESC")
+    fun getAllPublicNotDoneTasksByDate() : Flow<List<TaskDbo>>
+
+    @Query("SELECT * FROM public_tasks WHERE done = 1 ORDER BY date DESC")
+    fun getAllPublicDoneTasksByDate() : Flow<List<TaskDbo>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertPublicTask(taskDbo: TaskDbo)

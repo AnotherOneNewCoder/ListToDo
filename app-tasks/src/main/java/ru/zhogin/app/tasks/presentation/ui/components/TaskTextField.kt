@@ -1,6 +1,8 @@
 package ru.zhogin.app.tasks.presentation.ui.components
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
@@ -29,10 +31,16 @@ internal fun TaskTextField(
             modifier = Modifier.fillMaxWidth(),
         )
         if (error != null) {
-            Text(
-                text = error,
-                color = MaterialTheme.colorScheme.error
-            )
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.Center,
+            ) {
+                Text(
+                    text = error,
+                    color = MaterialTheme.colorScheme.error
+                )
+            }
+
         }
     }
 }

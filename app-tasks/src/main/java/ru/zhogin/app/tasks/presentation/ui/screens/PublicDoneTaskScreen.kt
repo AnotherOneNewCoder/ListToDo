@@ -27,31 +27,18 @@ import ru.zhogin.app.tasks.presentation.ui.dialogs.AddTaskSheet
 import ru.zhogin.app.tasks.presentation.ui.dialogs.DetailTaskSheet
 
 @Composable
-fun PublicNotDoneTaskScreen(
+fun PublicDoneTaskScreen(
     modifier: Modifier,
     state: PublicTasksListState,
-    newTask: TaskUI?,
     onEvent: (PublicTasksListEvent) -> Unit,
 ) {
 
-
-    when (state.isAddTaskSheetOpen) {
-        true -> AddTaskSheet(
-            onDismissRequest = { onEvent(PublicTasksListEvent.DismissPublicTasks) },
-            state = state,
-            newTask = newTask,
-            onEvent = onEvent,
-            modifier = modifier
-        )
-        else -> {}
-    }
-
-    when (state.isSelectedTaskSheetOpen) {
-        true -> DetailTaskSheet(onDismissRequest = { onEvent(PublicTasksListEvent.DismissPublicTasks) },
-            selectedTask = state.selectedTask, onEvent = onEvent)
-
-        false -> {}
-    }
+//    when (state.isSelectedTaskSheetOpen) {
+//        true -> DetailTaskSheet(onDismissRequest = { onEvent(PublicTasksListEvent.DismissPublicTasks) },
+//            selectedTask = state.selectedTask, onEvent = onEvent)
+//
+//        false -> {}
+//    }
 
     LazyColumn(
         modifier = modifier.fillMaxWidth()
@@ -62,30 +49,13 @@ fun PublicNotDoneTaskScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .clickable {
-                        onEvent(PublicTasksListEvent.SelectPublicTask(task))
+                        //onEvent(PublicTasksListEvent.SelectPublicTask(task))
                     }
                     .padding(horizontal = 16.dp)
             )
             Spacer(modifier = Modifier.height(10.dp))
+
         }
     }
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(bottom = 156.dp, end = 8.dp),
-        contentAlignment = Alignment.BottomEnd
-    ) {
-        FloatingActionButton(
-            onClick = {
-                onEvent(PublicTasksListEvent.OnAddNewPublicTaskClick)
-            },
 
-
-            ) {
-            Icon(
-                Icons.Filled.Add, contentDescription = "Add",
-                //tint = MaterialTheme.colorScheme.onBackground
-            )
-        }
-    }
 }

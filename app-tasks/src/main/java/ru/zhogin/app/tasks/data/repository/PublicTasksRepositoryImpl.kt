@@ -14,10 +14,20 @@ class PublicTasksRepositoryImpl @Inject constructor(
     private val database: PublicTasksDatabase
 ) : PublicTasksRepository {
 
-    override fun getAllPublicTasksByDate(): Flow<List<Task>> {
-        return database.taskDao::getAllPublicTasksByDate.invoke()
+    override fun getAllPublicNotDoneTasksByDate(): Flow<List<Task>> {
+        return database.taskDao::getAllPublicNotDoneTasksByDate.invoke()
             .map { list ->
-                list.filter { !it.done }
+                list
+                    //.filter { !it.done }
+                    .map { it.toTask() }
+            }
+    }
+
+    override fun getAllPublicDoneTasksByDate(): Flow<List<Task>> {
+        return database.taskDao::getAllPublicDoneTasksByDate.invoke()
+            .map { list ->
+                list
+                    //.filter { !it.done }
                     .map { it.toTask() }
             }
     }
@@ -25,7 +35,7 @@ class PublicTasksRepositoryImpl @Inject constructor(
     override fun getAllPublicTasksByPriority(): Flow<List<Task>> {
         return database.taskDao::getAllPublicTasksByPriority.asFlow()
             .map { list ->
-                list.filter { !it.done }
+                list
                     .map { it.toTask() }
             }
     }

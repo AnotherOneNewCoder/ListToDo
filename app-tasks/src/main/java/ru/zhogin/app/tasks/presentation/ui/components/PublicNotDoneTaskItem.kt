@@ -10,7 +10,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import ru.zhogin.app.tasks.common.util.Formater
 import ru.zhogin.app.tasks.presentation.models.TaskUI
+import ru.zhogin.app.uikit.Text1
 import ru.zhogin.app.uikit.Title2
 
 @Composable
@@ -30,8 +32,15 @@ internal fun PublicNotDoneTaskItem(
             color = MaterialTheme.colorScheme.secondary,
             )
         Spacer(modifier = Modifier.width(16.dp))
-        Text(text = task.date.toString(),
-            style = MaterialTheme.typography.Title2,
-            color = MaterialTheme.colorScheme.secondaryContainer)
+        if (!task.done) {
+            Text(text = Formater.convertMillisecondsToTimestamp(task.date),
+                style = MaterialTheme.typography.Text1,
+                color = MaterialTheme.colorScheme.secondaryContainer)
+        } else {
+            Text(text = Formater.convertMillisecondsToTimestamp(task.doneDate),
+                style = MaterialTheme.typography.Text1,
+                color = MaterialTheme.colorScheme.secondaryContainer)
+        }
+
     }
 }
