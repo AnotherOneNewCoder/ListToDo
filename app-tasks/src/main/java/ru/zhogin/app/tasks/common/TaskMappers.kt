@@ -4,7 +4,7 @@ import ru.zhogin.app.tasks.data.db.models.TaskDbo
 import ru.zhogin.app.tasks.domain.models.Task
 import ru.zhogin.app.tasks.presentation.models.TaskUI
 
-internal fun TaskDbo.toTask(): Task {
+fun TaskDbo.toTask(): Task {
     return Task(
         id = id,
         title = title,
@@ -16,7 +16,7 @@ internal fun TaskDbo.toTask(): Task {
     )
 }
 
-internal fun Task.toTaskDbo(): TaskDbo {
+fun Task.toTaskDbo(): TaskDbo {
     return TaskDbo(
         id = id,
         title = title,
@@ -28,7 +28,7 @@ internal fun Task.toTaskDbo(): TaskDbo {
     )
 }
 
-internal fun Task.toTaskUi(): TaskUI {
+fun Task.toTaskUi(): TaskUI {
     return TaskUI(
         id = id,
         title = title,
@@ -40,7 +40,7 @@ internal fun Task.toTaskUi(): TaskUI {
     )
 }
 
-internal fun TaskUI.toTask(): Task {
+fun TaskUI.toTask(): Task {
     return Task(
         id = id,
         title = title,

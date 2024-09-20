@@ -30,7 +30,7 @@ import ru.zhogin.app.uikit.TabText
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-internal fun TaskInfoSection(
+fun TaskInfoSection(
     title: String,
     value: String,
     icon: ImageVector,

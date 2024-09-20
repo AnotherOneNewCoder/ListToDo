@@ -1,4 +1,4 @@
-package ru.zhogin.app.tasks.presentation.ui.components
+package ru.zhogin.app.done.presentation.ui
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -16,7 +16,7 @@ import ru.zhogin.app.uikit.Text1
 import ru.zhogin.app.uikit.Title2
 
 @Composable
-internal fun PublicNotDoneTaskItem(
+internal fun PublicDoneTaskItem(
     task: TaskUI,
     modifier: Modifier = Modifier,
 ) {
@@ -32,13 +32,12 @@ internal fun PublicNotDoneTaskItem(
             color = MaterialTheme.colorScheme.secondary,
         )
         Spacer(modifier = Modifier.width(16.dp))
-
         Text(
-            text = Formater.convertMillisecondsToTimestamp(task.date),
+            text = Formater.convertMillisecondsToTimestamp(task.doneDate),
             style = MaterialTheme.typography.Text1,
             color = MaterialTheme.colorScheme.secondaryContainer
         )
-
-
     }
+
+
 }

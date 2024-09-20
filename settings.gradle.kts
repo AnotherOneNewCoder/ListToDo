@@ -23,3 +23,4 @@ rootProject.name = "ListToDo"
 include(":app")
 include(":app-uikit")
 include(":app-tasks")
+include(":app-done")
