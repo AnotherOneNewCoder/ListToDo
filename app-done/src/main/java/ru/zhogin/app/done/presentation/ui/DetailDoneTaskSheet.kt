@@ -7,9 +7,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.List
 import androidx.compose.material3.Card
@@ -50,12 +48,13 @@ fun DetailDoneTaskSheet(
                 containerColor = MaterialTheme.colorScheme.surface
             )
         ) {
+
             Spacer(modifier = Modifier.height(8.dp))
             Column(
                 modifier = Modifier
-                    .fillMaxWidth()
+                    .fillMaxSize()
                     .padding(horizontal = 16.dp)
-                    .verticalScroll(rememberScrollState()),
+                    ,
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
                 Spacer(modifier = Modifier.height(30.dp))
@@ -74,17 +73,23 @@ fun DetailDoneTaskSheet(
                     title = "Description",
                     value = selectedTask?.description ?: "",
                     icon = Icons.AutoMirrored.Rounded.List,
+                    modifier = Modifier
+                        .weight(1f)
                 )
+                Spacer(modifier = Modifier.height(16.dp))
+                Box(
+                    modifier = Modifier.fillMaxWidth(),
+                    contentAlignment = Alignment.BottomEnd
+                ) {
+                    FloatingButtons(
+                        onDismiss = onDismissRequest,
+                        onDelete = {onEvent(PublicDoneTasksListEvent.DeletePublicDoneTask)}
+                    )
+                }
+
+                Spacer(modifier = Modifier.height(16.dp))
             }
-            Box(modifier = Modifier
-                .fillMaxSize()
-                .padding(bottom = 16.dp, end = 16.dp),
-            contentAlignment = Alignment.BottomEnd) {
-                FloatingButtons(
-                    onDismiss = onDismissRequest,
-                    onDelete = {onEvent(PublicDoneTasksListEvent.DeletePublicDoneTask)}
-                )
             }
-        }
+
     }
 }

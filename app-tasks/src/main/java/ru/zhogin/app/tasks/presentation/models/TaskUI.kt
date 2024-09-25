@@ -8,5 +8,7 @@ data class TaskUI(
     val done: Boolean,
     val date: Long,
     val doneDate: Long,
+    val reminder: Boolean,
+    val reminderDate: Long,
 ) {
 }

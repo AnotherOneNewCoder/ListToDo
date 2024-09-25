@@ -1,6 +1,7 @@
 package ru.zhogin.app.tasks.domain.models
 
 
+
 data class Task(
     val id: Long,
     val title: String,
@@ -9,5 +10,7 @@ data class Task(
     val done: Boolean,
     val date: Long,
     val doneDate: Long,
+    val reminder: Boolean,
+    val reminderDate: Long,
 )
 

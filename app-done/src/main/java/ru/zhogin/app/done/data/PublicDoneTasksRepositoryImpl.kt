@@ -4,6 +4,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import ru.zhogin.app.done.domain.repository.PublicDoneTasksRepository
 import ru.zhogin.app.tasks.common.toTask
+import ru.zhogin.app.tasks.common.toTaskDbo
 import ru.zhogin.app.tasks.data.db.PublicTasksDatabase
 import ru.zhogin.app.tasks.domain.models.Task
 import javax.inject.Inject
@@ -21,5 +22,5 @@ class PublicDoneTasksRepositoryImpl @Inject constructor(
 
     override suspend fun getPublicDoneTask(id: Long): Task = database.taskDao.selectPublicTask(id).toTask()
 
-    override suspend fun deletePublicTask(id: Long) = database.taskDao.deletePublicTask(id)
+    override suspend fun deletePublicTask(task: Task) = database.taskDao.deletePublicTask(task.toTaskDbo())
 }

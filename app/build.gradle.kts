@@ -72,4 +72,5 @@ dependencies {
 
     implementation(project(":app-uikit"))
     implementation(project(":app-tasks"))
+    implementation(project(":app-done"))
 }

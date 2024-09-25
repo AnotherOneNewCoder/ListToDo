@@ -23,14 +23,6 @@ class PublicTasksRepositoryImpl @Inject constructor(
             }
     }
 
-    override fun getAllPublicDoneTasksByDate(): Flow<List<Task>> {
-        return database.taskDao::getAllPublicDoneTasksByDate.invoke()
-            .map { list ->
-                list
-                    //.filter { !it.done }
-                    .map { it.toTask() }
-            }
-    }
 
     override fun getAllPublicTasksByPriority(): Flow<List<Task>> {
         return database.taskDao::getAllPublicTasksByPriority.asFlow()
@@ -44,6 +36,7 @@ class PublicTasksRepositoryImpl @Inject constructor(
 
     override suspend fun insertPublicTask(task: Task) = database.taskDao.insertPublicTask(task.toTaskDbo())
 
-    override suspend fun deletePublicTask(id: Long) = database.taskDao.deletePublicTask(id)
+    override suspend fun deletePublicTask(task: Task) = database.taskDao.deletePublicTask(task.toTaskDbo())
+    override suspend fun updatePublicTask(task: Task) = database.taskDao.updateTask(task.toTaskDbo())
 
 }

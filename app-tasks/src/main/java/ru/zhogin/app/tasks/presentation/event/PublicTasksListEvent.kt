@@ -14,4 +14,6 @@ sealed interface PublicTasksListEvent {
     data class EditPublicTask(val task: TaskUI): PublicTasksListEvent
     data object DeletePublicTask: PublicTasksListEvent
     data class ChangeDoneStatusPublicTask(val task: TaskUI): PublicTasksListEvent
+    data class OnReminderChangeStatus(val value: Boolean): PublicTasksListEvent
+    data class OnReminderDateChanged(val value: Long): PublicTasksListEvent
 }

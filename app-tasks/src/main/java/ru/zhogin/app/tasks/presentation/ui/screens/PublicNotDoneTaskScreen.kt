@@ -26,7 +26,7 @@ import ru.zhogin.app.tasks.presentation.ui.dialogs.DetailTaskSheet
 
 @Composable
 fun PublicNotDoneTaskScreen(
-    modifier: Modifier,
+    modifier: Modifier = Modifier,
     state: PublicTasksListState,
     newTask: TaskUI?,
     onEvent: (PublicTasksListEvent) -> Unit,
@@ -55,6 +55,7 @@ fun PublicNotDoneTaskScreen(
         modifier = modifier.fillMaxWidth()
     ) {
         items(state.tasks) { task ->
+            Spacer(modifier = Modifier.height(10.dp))
             PublicNotDoneTaskItem(
                 task = task,
                 modifier = Modifier
@@ -64,7 +65,6 @@ fun PublicNotDoneTaskScreen(
                     }
                     .padding(horizontal = 16.dp)
             )
-            Spacer(modifier = Modifier.height(10.dp))
         }
     }
     Box(
@@ -82,7 +82,6 @@ fun PublicNotDoneTaskScreen(
             ) {
             Icon(
                 Icons.Filled.Add, contentDescription = "Add",
-                //tint = MaterialTheme.colorScheme.onBackground
             )
         }
     }

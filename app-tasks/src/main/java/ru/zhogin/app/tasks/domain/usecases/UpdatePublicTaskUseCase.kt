@@ -1,10 +1,11 @@
 package ru.zhogin.app.tasks.domain.usecases
 
+import ru.zhogin.app.tasks.domain.models.Task
 import ru.zhogin.app.tasks.domain.repository.PublicTasksRepository
 import javax.inject.Inject
 
-class GetAllPublicDoneTasksByDateUseCase @Inject constructor(
+class UpdatePublicTaskUseCase @Inject constructor(
     private val repository: PublicTasksRepository
 ) {
-    operator fun invoke() = repository.getAllPublicDoneTasksByDate()
+    suspend operator fun invoke(task: Task) = repository.updatePublicTask(task)
 }

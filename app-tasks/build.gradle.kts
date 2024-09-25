@@ -5,7 +5,9 @@ plugins {
     alias(libs.plugins.kapt)
     alias(libs.plugins.ksp)
     alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.androidx.room)
 }
+
 android {
     namespace = "ru.zhogin.app.tasks"
     compileSdk = 34
@@ -33,6 +35,10 @@ android {
     kotlinOptions {
         jvmTarget = "17"
     }
+    room {
+        schemaDirectory("$projectDir/schemas")
+    }
+
 }
 
 dependencies {

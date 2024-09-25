@@ -22,17 +22,17 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color.Companion.Black
-import androidx.compose.ui.graphics.Color.Companion.Green
 import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import ru.zhogin.app.done.presentation.event.PublicDoneTasksListEvent
+import ru.zhogin.app.done.presentation.state.PublicDoneTasksListState
+import ru.zhogin.app.done.presentation.ui.PublicDoneTasksScreen
 import ru.zhogin.app.tasks.presentation.event.PublicTasksListEvent
 import ru.zhogin.app.tasks.presentation.models.TaskUI
 import ru.zhogin.app.tasks.presentation.state.PublicTasksListState
-import ru.zhogin.app.tasks.presentation.ui.screens.PublicDoneTaskScreen
 import ru.zhogin.app.tasks.presentation.ui.screens.PublicNotDoneTaskScreen
 import ru.zhogin.app.uikit.Title1
 
@@ -41,9 +41,10 @@ internal fun NavigationGraph(
     navController: NavHostController,
     paddingValues: PaddingValues,
     state: PublicTasksListState,
-    stateDone: PublicTasksListState,
+    stateDone: PublicDoneTasksListState,
     newTask: TaskUI?,
     onEvent: (PublicTasksListEvent) -> Unit,
+    onEventDone: (PublicDoneTasksListEvent) -> Unit,
 ) {
     NavHost(navController = navController,
         startDestination = NavigationScreens.PublicNotDoneTaskScreen.route,
@@ -77,10 +78,10 @@ internal fun NavigationGraph(
             )
         }
         composable(NavigationScreens.PublicDoneTaskScreen.route) {
-            PublicDoneTaskScreen(
+            PublicDoneTasksScreen(
                 modifier = Modifier.padding(paddingValues),
                 state = stateDone,
-                onEvent = onEvent,
+                onEvent = onEventDone,
             )
 
 

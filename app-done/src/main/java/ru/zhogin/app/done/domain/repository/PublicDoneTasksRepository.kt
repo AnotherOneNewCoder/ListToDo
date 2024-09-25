@@ -6,5 +6,5 @@ import ru.zhogin.app.tasks.domain.models.Task
 interface PublicDoneTasksRepository {
     fun getAllPublicDoneTasksByDate(): Flow<List<Task>>
     suspend fun getPublicDoneTask(id: Long) : Task
-    suspend fun deletePublicTask(id: Long)
+    suspend fun deletePublicTask(task: Task)
 }

@@ -1,9 +1,11 @@
 package ru.zhogin.app.tasks.data.db.dao
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Update
 import kotlinx.coroutines.flow.Flow
 import ru.zhogin.app.tasks.data.db.models.TaskDbo
 
@@ -24,8 +26,11 @@ interface TaskDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertPublicTask(taskDbo: TaskDbo)
 
-    @Query("DELETE FROM public_tasks WHERE id = :id")
-    suspend fun deletePublicTask(id: Long)
+    @Update
+    suspend fun updateTask(taskDbo: TaskDbo)
+
+    @Delete
+    suspend fun deletePublicTask(taskDbo: TaskDbo)
 
     @Query("SELECT * FROM public_tasks WHERE id = :id")
     suspend fun selectPublicTask(id: Long) : TaskDbo

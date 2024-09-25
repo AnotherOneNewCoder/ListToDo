@@ -11,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
+import ru.zhogin.app.done.presentation.viewmodel.PublicDoneTasksViewModel
 import ru.zhogin.app.tasks.presentation.viewmodel.PublicTasksViewModel
 import ru.zhogin.app.uikit.ListToDoTheme
 import ru.zhogin.listtodo.presentation.ui.bottombar.BottomBar
@@ -25,7 +26,9 @@ class MainActivity : ComponentActivity() {
             ListToDoTheme {
                 val viewmodel: PublicTasksViewModel = hiltViewModel()
                 val state = viewmodel.stateByDate.collectAsState()
-                val stateDone = viewmodel.stateByDateDone.collectAsState()
+
+                val viewmodelDone : PublicDoneTasksViewModel = hiltViewModel()
+                val stateDone = viewmodelDone.state.collectAsState()
                 val navController = rememberNavController()
                 Scaffold(
                     modifier = Modifier.fillMaxSize(),
@@ -43,6 +46,7 @@ class MainActivity : ComponentActivity() {
                         newTask = viewmodel.newTask,
                         onEvent = viewmodel::onEvent,
                         stateDone = stateDone.value,
+                        onEventDone = viewmodelDone::onEvent,
                     )
                 }
             }

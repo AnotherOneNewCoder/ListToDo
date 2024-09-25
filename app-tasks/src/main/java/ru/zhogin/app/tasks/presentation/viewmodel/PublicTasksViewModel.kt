@@ -16,10 +16,10 @@ import kotlinx.coroutines.launch
 import ru.zhogin.app.tasks.common.toTask
 import ru.zhogin.app.tasks.common.toTaskUi
 import ru.zhogin.app.tasks.domain.usecases.DeletePublicTaskUseCase
-import ru.zhogin.app.tasks.domain.usecases.GetAllPublicDoneTasksByDateUseCase
 import ru.zhogin.app.tasks.domain.usecases.GetAllPublicNotDoneTasksByDateUseCase
 import ru.zhogin.app.tasks.domain.usecases.GetAllPublicTasksByPriorityUseCase
 import ru.zhogin.app.tasks.domain.usecases.InsertPublicTaskUseCase
+import ru.zhogin.app.tasks.domain.usecases.UpdatePublicTaskUseCase
 import ru.zhogin.app.tasks.presentation.event.PublicTasksListEvent
 import ru.zhogin.app.tasks.presentation.models.TaskUI
 import ru.zhogin.app.tasks.presentation.state.PublicTasksListState
@@ -28,10 +28,10 @@ import javax.inject.Inject
 @HiltViewModel
 class PublicTasksViewModel @Inject constructor(
     getAllTasksByDate: GetAllPublicNotDoneTasksByDateUseCase,
-    getAllDoneTasksByDate: GetAllPublicDoneTasksByDateUseCase,
     private val getAllTasksByPriority: GetAllPublicTasksByPriorityUseCase,
     private val insertPublicTask: InsertPublicTaskUseCase,
     private val deletePublicTask: DeletePublicTaskUseCase,
+    private val updatePublicTaskUseCase: UpdatePublicTaskUseCase,
 ) : ViewModel() {
     private val _state = MutableStateFlow(PublicTasksListState())
     val stateByDate = combine(
@@ -43,15 +43,7 @@ class PublicTasksViewModel @Inject constructor(
         )
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000L), PublicTasksListState())
 
-    private val _stateDone = MutableStateFlow(PublicTasksListState())
-    val stateByDateDone = combine(
-        _stateDone,
-        getAllDoneTasksByDate()
-    ) { state, tasks ->
-        state.copy(
-            tasks = tasks.map { it.toTaskUi() }
-        )
-    }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000L), PublicTasksListState())
+
 
 
     var newTask: TaskUI? by mutableStateOf(null)
@@ -60,13 +52,13 @@ class PublicTasksViewModel @Inject constructor(
         when (event) {
             PublicTasksListEvent.DeletePublicTask -> {
                 viewModelScope.launch {
-                    _state.value.selectedTask?.id?.let { id ->
+                    _state.value.selectedTask?.let { task ->
                         _state.update {
                             it.copy(
                                 isSelectedTaskSheetOpen = false
                             )
                         }
-                        deletePublicTask(id)
+                        deletePublicTask(task.toTask())
                         delay(500L) // animation delay
                         _state.update {
                             it.copy(
@@ -152,7 +144,11 @@ class PublicTasksViewModel @Inject constructor(
                             newTask = newTask?.copy(
                                 date = System.currentTimeMillis()
                             )
-                            newTask?.toTask()?.let { insertPublicTask(it) }
+                            newTask?.toTask()?.let {
+                                if (it.id == 0L) insertPublicTask(it)
+                                else updatePublicTaskUseCase(it)
+
+                            }
                             delay(500L)
                             newTask = null
                         }
@@ -194,6 +190,13 @@ class PublicTasksViewModel @Inject constructor(
                         )
                     }
                 }
+
+            is PublicTasksListEvent.OnReminderChangeStatus -> {
+
+            }
+            is PublicTasksListEvent.OnReminderDateChanged -> {
+
+            }
         }
     }
 }
@@ -206,4 +209,6 @@ private val emptyTask = TaskUI(
     done = false,
     date = 0L,
     doneDate = 0L,
+    reminder = false,
+    reminderDate = 0L,
 )

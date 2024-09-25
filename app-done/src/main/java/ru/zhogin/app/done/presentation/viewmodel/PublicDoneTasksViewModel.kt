@@ -14,6 +14,7 @@ import ru.zhogin.app.done.domain.usecases.DeletePublicDoneTaskUseCase
 import ru.zhogin.app.done.domain.usecases.GetAllPublicDoneTasksByDateUseCase
 import ru.zhogin.app.done.presentation.event.PublicDoneTasksListEvent
 import ru.zhogin.app.done.presentation.state.PublicDoneTasksListState
+import ru.zhogin.app.tasks.common.toTask
 import ru.zhogin.app.tasks.common.toTaskUi
 import javax.inject.Inject
 
@@ -37,13 +38,13 @@ class PublicDoneTasksViewModel @Inject constructor(
         when (event) {
             PublicDoneTasksListEvent.DeletePublicDoneTask -> {
                 viewModelScope.launch {
-                    _state.value.selectedTask?.id?.let { id ->
+                    _state.value.selectedTask?.let { task ->
                         _state.update {
                             it.copy(
                                 isSelectedTaskSheetOpen = false
                             )
                         }
-                        deletePublicDoneTaskUseCase(id)
+                        deletePublicDoneTaskUseCase(task.toTask())
                         delay(500L) // animation delay
                         _state.update {
                             it.copy(

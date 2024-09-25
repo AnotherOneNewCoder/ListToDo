@@ -13,6 +13,8 @@ fun TaskDbo.toTask(): Task {
         done = done,
         date = date,
         doneDate = doneDate,
+        reminder = reminder,
+        reminderDate = reminderDate,
     )
 }
 
@@ -25,6 +27,8 @@ fun Task.toTaskDbo(): TaskDbo {
         done = done,
         date = date,
         doneDate = doneDate,
+        reminder = reminder,
+        reminderDate = reminderDate,
     )
 }
 
@@ -37,6 +41,8 @@ fun Task.toTaskUi(): TaskUI {
         done = done,
         date = date,
         doneDate = doneDate,
+        reminder = reminder,
+        reminderDate = reminderDate,
     )
 }
 
@@ -49,5 +55,7 @@ fun TaskUI.toTask(): Task {
         done = done,
         date = date,
         doneDate = doneDate,
+        reminder = reminder,
+        reminderDate = reminderDate,
     )
 }

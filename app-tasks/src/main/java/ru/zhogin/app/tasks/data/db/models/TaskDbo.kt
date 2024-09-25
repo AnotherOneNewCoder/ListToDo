@@ -6,6 +6,7 @@ import androidx.room.PrimaryKey
 
 @Entity("public_tasks")
 data class TaskDbo (
+    @ColumnInfo("id")
     @PrimaryKey(autoGenerate = true)
     val id: Long,
     @ColumnInfo("title")
@@ -20,4 +21,11 @@ data class TaskDbo (
     val date: Long,
     @ColumnInfo("done_date")
     val doneDate: Long,
+    @ColumnInfo("reminder")
+    val reminder: Boolean = false,
+    @ColumnInfo("reminder_date")
+    val reminderDate: Long = 0L,
+    @ColumnInfo("test")
+    val test: String = "",
+
 )
