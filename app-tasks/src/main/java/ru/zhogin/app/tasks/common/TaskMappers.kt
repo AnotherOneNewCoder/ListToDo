@@ -43,6 +43,7 @@ fun Task.toTaskUi(): TaskUI {
         doneDate = doneDate,
         reminder = reminder,
         reminderDate = reminderDate,
+        isOptionsRevealed = false,
     )
 }
 

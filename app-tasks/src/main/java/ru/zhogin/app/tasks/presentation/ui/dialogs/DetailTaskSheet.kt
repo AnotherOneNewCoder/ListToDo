@@ -84,14 +84,8 @@ fun DetailTaskSheet(
                             selectedTask?.let {
                             onEvent(PublicTasksListEvent.EditPublicTask(it))
                         } },
-                        onDone = {
-                            selectedTask?.let {
-                            onEvent(PublicTasksListEvent.ChangeDoneStatusPublicTask(it))
-                        } },
                         onDismiss = onDismissRequest,
-                        onDelete = {
-                            onEvent(PublicTasksListEvent.DeletePublicTask)
-                        })
+                        )
                 }
                 Spacer(modifier = Modifier.height(16.dp))
             }

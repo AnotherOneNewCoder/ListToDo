@@ -197,6 +197,28 @@ class PublicTasksViewModel @Inject constructor(
             is PublicTasksListEvent.OnReminderDateChanged -> {
 
             }
+
+            is PublicTasksListEvent.OnOptionsRevealedChangedToTrue -> {
+                _state.update {
+                    it.copy(
+                        selectedTask = event.task.copy(isOptionsRevealed = true),
+                        isSelectedTaskSheetOpen = false,
+                        isAddTaskSheetOpen = false,
+                        validationTitleError = null,
+                    )
+                }
+            }
+
+            is PublicTasksListEvent.OnOptionsRevealedChangedToFalse -> {
+                _state.update {
+                    it.copy(
+                        selectedTask = event.task.copy(isOptionsRevealed = false),
+                        isSelectedTaskSheetOpen = false,
+                        isAddTaskSheetOpen = false,
+                        validationTitleError = null,
+                    )
+                }
+            }
         }
     }
 }
@@ -211,4 +233,5 @@ private val emptyTask = TaskUI(
     doneDate = 0L,
     reminder = false,
     reminderDate = 0L,
+    isOptionsRevealed = false
 )
