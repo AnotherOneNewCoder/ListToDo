@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="cancel">Cancel</string>
+    <string name="confirm">Confirm</string>
+    <string name="create_new_task">"Create new task: "</string>
+    <string name="edit_task">"Edit task: "</string>
+    <string name="title">Title:</string>
+    <string name="description">Description:</string>
+    <string name="reminder">Reminder:</string>
+    <string name="choose_date_in_future">Choose date in future!</string>
+    <string name="save">Save</string>
+    <string name="set_notification">Set notification</string>
+    <string name="shared">Shared!</string>
+    <string name="deleted">Deleted!</string>
+    <string name="done">Done!</string>
+    <string name="unexpected_error">Unexpected error!</string>
+</resources>

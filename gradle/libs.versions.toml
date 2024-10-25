@@ -16,6 +16,7 @@ hilt = "1.2.0"
 nav_version = "2.7.7"
 room = "2.6.1"
 ksp = "2.0.20-1.0.24"
+gson_version = "2.10.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -48,6 +49,7 @@ androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
 
 javax-inject = { module = "javax.inject:javax.inject", version.ref = "javax-inject" }
 androidx-navigation = { module = "androidx.navigation:navigation-compose", version.ref = "nav_version" }
+google-code-gson = { module = "com.google.code.gson:gson", version.ref = "gson_version" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

@@ -93,6 +93,16 @@ val Typography.Text1: TextStyle
             color = MaterialTheme.colorScheme.primary
         )
     }
+val Typography.Text2: TextStyle
+    @Composable
+    get() {
+        return TextStyle(
+            fontFamily = SFFont,
+            fontWeight = FontWeight.Normal,
+            fontSize = 15.sp,
+            color = MaterialTheme.colorScheme.primary
+        )
+    }
 val Typography.ButtonText1: TextStyle
     @Composable
     get() {

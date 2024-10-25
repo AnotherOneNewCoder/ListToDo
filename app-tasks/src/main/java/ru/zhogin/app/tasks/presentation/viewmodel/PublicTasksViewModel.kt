@@ -192,10 +192,14 @@ class PublicTasksViewModel @Inject constructor(
                 }
 
             is PublicTasksListEvent.OnReminderChangeStatus -> {
-
+                newTask = newTask?.copy(
+                    reminder = event.value
+                )
             }
             is PublicTasksListEvent.OnReminderDateChanged -> {
-
+                newTask = newTask?.copy(
+                    reminderDate = event.value
+                )
             }
 
             is PublicTasksListEvent.OnOptionsRevealedChangedToTrue -> {

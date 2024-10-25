@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="cancel">Оменить</string>
+    <string name="confirm">Подтвердить</string>
+    <string name="create_new_task">"Новое задание: "</string>
+    <string name="edit_task">"Редактирование: "</string>
+    <string name="title">Название:</string>
+    <string name="description">Описание:</string>
+    <string name="reminder">"Напоминание: "</string>
+    <string name="choose_date_in_future">Выбранная дата не может быть в прошлом!</string>
+    <string name="save">Сохранить</string>
+    <string name="set_notification">Установить напоминание</string>
+    <string name="shared">Успешно поделились!</string>
+    <string name="deleted">Удалено!</string>
+    <string name="done">Выполнено!</string>
+    <string name="unexpected_error">Произошла неожиданная ошибка!</string>
+</resources>

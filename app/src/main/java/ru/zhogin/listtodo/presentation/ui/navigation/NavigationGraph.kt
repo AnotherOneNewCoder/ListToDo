@@ -1,5 +1,7 @@
 package ru.zhogin.listtodo.presentation.ui.navigation
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.animation.AnimatedContentTransitionScope
 import androidx.compose.animation.core.EaseIn
 import androidx.compose.animation.core.EaseOut
@@ -36,6 +38,7 @@ import ru.zhogin.app.tasks.presentation.state.PublicTasksListState
 import ru.zhogin.app.tasks.presentation.ui.screens.PublicNotDoneTaskScreen
 import ru.zhogin.app.uikit.Title1
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 internal fun NavigationGraph(
     navController: NavHostController,

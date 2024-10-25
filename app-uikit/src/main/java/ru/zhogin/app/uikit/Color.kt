@@ -217,3 +217,14 @@ val surfaceContainerLowDarkHighContrast = Color(0xFF181C20)
 val surfaceContainerDarkHighContrast = Color(0xFF1C2024)
 val surfaceContainerHighDarkHighContrast = Color(0xFF272A2F)
 val surfaceContainerHighestDarkHighContrast = Color(0xFF323539)
+
+
+val Black = Color(0xFF000000)
+val Dark = Color(0x80000000)
+val White = Color(0xFFFFFFFF)
+val Navy = Color(0xFF172157)
+val DarkNavy = Color(0xFF0E132E)
+val Blue = Color(0xFF40A4FF)
+val GradientBlue = Color(0xFF58A6FF)
+val GradientPurple = Color(0xFFEE82EE)
+

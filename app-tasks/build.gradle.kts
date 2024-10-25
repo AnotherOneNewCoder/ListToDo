@@ -55,6 +55,7 @@ dependencies {
     implementation(libs.javax.inject)
     implementation(libs.androidx.lifecycle.viewmodule.ktx)
     implementation(libs.androidx.lifecycle.viewmodule.compose)
+    implementation(libs.google.code.gson)
     kapt(libs.dagger.hilt.compiler)
     ksp(libs.androidx.room.compiler)
     api(libs.androidx.room.ktx)
