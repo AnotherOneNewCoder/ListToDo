@@ -76,6 +76,23 @@ class PublicDoneTasksViewModel @Inject constructor(
                     )
                 }
             }
+
+            is PublicDoneTasksListEvent.OnOptionsRevealedChangedToFalse -> {
+                _state.update {
+                    it.copy(
+                        selectedTask = event.task.copy(isOptionsRevealed = false)
+                    )
+                }
+
+            }
+            is PublicDoneTasksListEvent.OnOptionsRevealedChangedToTrue -> {
+                _state.update {
+                    it.copy(
+                        selectedTask = event.task.copy(isOptionsRevealed = true)
+                    )
+                }
+
+            }
         }
     }
 }

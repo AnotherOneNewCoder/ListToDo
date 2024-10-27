@@ -32,7 +32,7 @@ object Formater {
         }
     }
     fun convertMillsToDate(mills: Long) : String {
-        val sdf = SimpleDateFormat("dd.MM.yyyy   HH:mm")
+        val sdf = SimpleDateFormat("dd/MM/yyyy   HH:mm")
         val date = Date(mills)
         return sdf.format(date)
     }

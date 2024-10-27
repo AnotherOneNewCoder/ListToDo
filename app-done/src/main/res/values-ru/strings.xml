@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="created">"Дата создания: "</string>
+    <string name="done">Дата выполнения:</string>
+    <string name="description">Описание:</string>
+</resources>

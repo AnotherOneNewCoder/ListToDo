@@ -24,6 +24,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import ru.zhogin.app.tasks.R
+import ru.zhogin.app.tasks.presentation.alarm.cancelAlarm
 import ru.zhogin.app.tasks.presentation.event.PublicTasksListEvent
 import ru.zhogin.app.tasks.presentation.models.TaskUI
 import ru.zhogin.app.tasks.presentation.state.PublicTasksListState
@@ -31,7 +32,7 @@ import ru.zhogin.app.tasks.presentation.ui.components.ActionImage
 import ru.zhogin.app.tasks.presentation.ui.components.GradientFloatingActionButton
 import ru.zhogin.app.tasks.presentation.ui.components.PublicNotDoneTaskItem
 import ru.zhogin.app.tasks.presentation.ui.components.SwipableItemWithActions
-import ru.zhogin.app.tasks.presentation.ui.dialogs.AddTaskSheetTest
+import ru.zhogin.app.tasks.presentation.ui.dialogs.AddTaskSheet
 import ru.zhogin.app.tasks.presentation.ui.dialogs.DetailTaskSheet
 import ru.zhogin.app.uikit.GradientBlue
 import ru.zhogin.app.uikit.GradientPurple
@@ -49,7 +50,7 @@ fun PublicNotDoneTaskScreen(
 
     val context = LocalContext.current
     when (state.isAddTaskSheetOpen) {
-        true -> AddTaskSheetTest(
+        true -> AddTaskSheet(
             onDismissRequest = { onEvent(PublicTasksListEvent.DismissPublicTasks) },
             state = state,
             newTask = newTask,
@@ -81,7 +82,6 @@ fun PublicNotDoneTaskScreen(
             key = { _, item: TaskUI -> item.id }
         ) { _, item: TaskUI ->
             SwipableItemWithActions(
-                //modifier = Modifier.background(Color.Transparent),
                 isRevealed = item.isOptionsRevealed,
                 onExpanded = {
                     onEvent(PublicTasksListEvent.OnOptionsRevealedChangedToTrue(item))
@@ -92,11 +92,12 @@ fun PublicNotDoneTaskScreen(
                 actions = {
                     ActionImage(
                         onClick = {
+                            cancelAlarm(context, item)
                             onEvent(PublicTasksListEvent.DeletePublicTask)
                             onEvent(PublicTasksListEvent.OnOptionsRevealedChangedToFalse(item))
                             Toast.makeText(
                                 context,
-                                context.getString(R.string.deleted) + " " + item.title,
+                                context.getString(R.string.deleted) + " " + item.title + "!",
                                 Toast.LENGTH_SHORT
                             ).show()
                         },
@@ -157,18 +158,6 @@ fun PublicNotDoneTaskScreen(
             .background(Color.Transparent),
         contentAlignment = Alignment.BottomEnd
     ) {
-//        FloatingActionButton(
-//            onClick = {
-//                onEvent(PublicTasksListEvent.OnAddNewPublicTaskClick)
-//            },
-//
-//
-//
-//            ) {
-//            Icon(
-//                Icons.Filled.Add, contentDescription = "Add",
-//            )
-//        }
         GradientFloatingActionButton(gradientColors = listOf(
             GradientPurple,
             GradientBlue,
@@ -177,27 +166,5 @@ fun PublicNotDoneTaskScreen(
                 Icons.Filled.Add, contentDescription = "Add", tint = White,
             )
         }
-//        IconButton(
-//            onClick = {
-//                onEvent(PublicTasksListEvent.OnAddNewPublicTaskClick)
-//            },
-//            modifier = Modifier
-//                .background(
-//                    brush = Brush.verticalGradient(
-//                        listOf(
-//                            GradientPurple,
-//                            GradientBlue,
-//                        )
-//                    ),
-//                    shape = RoundedCornerShape(14.dp)
-//                )
-//
-//
-//
-//        ) {
-//            Icon(
-//                Icons.Filled.Add, contentDescription = "Add", tint = White,
-//            )
-//        }
     }
 }

@@ -19,7 +19,7 @@ internal fun setAlarm(context: Context, task: TaskUI) {
         context,
         task.reminderDate.toInt(),
         intent,
-        PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
+        PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
     )
     val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
 
@@ -39,7 +39,7 @@ internal fun cancelAlarm(context: Context, task: TaskUI) {
         context,
         task.reminderDate.toInt(),
         intent,
-        PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
+        PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
     )
     val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
     try {

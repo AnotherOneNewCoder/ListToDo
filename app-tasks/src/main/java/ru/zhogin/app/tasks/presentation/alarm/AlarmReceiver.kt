@@ -42,7 +42,7 @@ class AlarmReceiver : BroadcastReceiver() {
             action = DONE
         }
         val donePendingIntent = PendingIntent.getBroadcast(
-            context, task.reminderDate.toInt(), doneIntent, PendingIntent.FLAG_IMMUTABLE
+            context, task.id.toInt(), doneIntent, PendingIntent.FLAG_IMMUTABLE
         )
 
         val closeIntent = Intent(context, AlarmReceiver::class.java).apply {
@@ -50,7 +50,7 @@ class AlarmReceiver : BroadcastReceiver() {
             action = REJECT
         }
         val closePendingIntent = PendingIntent.getBroadcast(
-            context, task.reminderDate.toInt(), closeIntent, PendingIntent.FLAG_IMMUTABLE
+            context, task.id.toInt(), closeIntent, PendingIntent.FLAG_IMMUTABLE
         )
 
         when (intent.action) {

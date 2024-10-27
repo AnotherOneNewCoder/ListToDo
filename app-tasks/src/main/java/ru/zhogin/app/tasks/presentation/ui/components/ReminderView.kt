@@ -20,6 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import ru.zhogin.app.uikit.Blue
+import ru.zhogin.app.uikit.White
 
 @Composable
 internal fun ReminderView(
@@ -49,7 +50,7 @@ internal fun ReminderView(
                 )
             }
 
-            Text(text = date, color = Blue)
+            Text(text = date, color = White)
         }
         Spacer(modifier = Modifier.height(16.dp))
         Row(
@@ -67,7 +68,7 @@ internal fun ReminderView(
                     tint = Blue
                 )
             }
-            Text(text = time, color = Blue)
+            Text(text = time, color = White)
         }
     }
 

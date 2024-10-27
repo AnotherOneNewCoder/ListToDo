@@ -28,7 +28,7 @@ fun GradientFloatingActionButton(
     gradientColors: List<Color>,
     elevation: Dp = 0.dp,
     onClick: () -> Unit,
-    content: @Composable() (BoxScope.() -> Unit)
+    content: @Composable (BoxScope.() -> Unit)
 ) {
     val shape = CircleShape
     Surface(

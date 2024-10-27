@@ -11,5 +11,4 @@ data class TaskUI(
     val reminder: Boolean,
     val reminderDate: Long,
     val isOptionsRevealed: Boolean,
-) {
-}
+)

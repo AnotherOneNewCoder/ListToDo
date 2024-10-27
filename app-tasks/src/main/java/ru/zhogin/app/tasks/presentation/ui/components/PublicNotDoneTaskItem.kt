@@ -22,7 +22,7 @@ import ru.zhogin.app.uikit.Text2
 import ru.zhogin.app.uikit.White
 
 @Composable
-internal fun PublicNotDoneTaskItem(
+fun PublicNotDoneTaskItem(
     task: TaskUI,
     modifier: Modifier = Modifier,
 ) {

@@ -11,7 +11,8 @@
     <string name="save">Сохранить</string>
     <string name="set_notification">Установить напоминание</string>
     <string name="shared">Успешно поделились!</string>
-    <string name="deleted">Удалено!</string>
+    <string name="deleted">Удалено</string>
     <string name="done">Выполнено!</string>
     <string name="unexpected_error">Произошла неожиданная ошибка!</string>
+    <string name="task_created">Задание создано!</string>
 </resources>

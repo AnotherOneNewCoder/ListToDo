@@ -24,7 +24,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -36,6 +35,8 @@ import ru.zhogin.app.tasks.presentation.event.PublicTasksListEvent
 import ru.zhogin.app.tasks.presentation.models.TaskUI
 import ru.zhogin.app.tasks.presentation.state.PublicTasksListState
 import ru.zhogin.app.tasks.presentation.ui.screens.PublicNotDoneTaskScreen
+import ru.zhogin.app.uikit.Blue
+import ru.zhogin.app.uikit.Navy
 import ru.zhogin.app.uikit.Title1
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -95,28 +96,7 @@ internal fun NavigationGraph(
     }
 }
 
-@Composable
-internal fun ErrorBox(
-    paddingValues: PaddingValues,
-) {
-    Box(
-        Modifier
-            .fillMaxSize()
-            .padding(paddingValues)
-            .background(White),
-        contentAlignment = Alignment.Center
-    ) {
-        Column(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Text(text = "Error...", style = MaterialTheme.typography.Title1)
-            Spacer(modifier = Modifier.height(21.dp))
 
-        }
-
-    }
-}
 @Composable
 internal fun LoadingBox(
     paddingValues: PaddingValues,
@@ -125,16 +105,20 @@ internal fun LoadingBox(
         Modifier
             .fillMaxSize()
             .padding(paddingValues)
-            .background(White),
+            .background(Navy),
         contentAlignment = Alignment.Center
     ) {
         Column(
             modifier = Modifier.fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(text = "Loading...", style = MaterialTheme.typography.Title1)
+            Text(text = "Loading...", style = MaterialTheme.typography.Title1.copy(
+                Blue
+            ))
             Spacer(modifier = Modifier.height(21.dp))
-            CircularProgressIndicator()
+            CircularProgressIndicator(
+                color = Blue
+            )
         }
 
     }

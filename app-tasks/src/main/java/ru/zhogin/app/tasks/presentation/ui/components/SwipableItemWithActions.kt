@@ -28,7 +28,7 @@ import kotlinx.coroutines.launch
 import kotlin.math.roundToInt
 
 @Composable
-internal fun SwipableItemWithActions(
+fun SwipableItemWithActions(
     modifier: Modifier = Modifier,
     isRevealed: Boolean,
     actions: @Composable RowScope.() -> Unit,

@@ -13,7 +13,7 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.unit.dp
 
 @Composable
-internal fun ActionImage(
+fun ActionImage(
     modifier: Modifier = Modifier,
     onClick: () -> Unit,
     backgroundColor: Color = Color.Transparent,
