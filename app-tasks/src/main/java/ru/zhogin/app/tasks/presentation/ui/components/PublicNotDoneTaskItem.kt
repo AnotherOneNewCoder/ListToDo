@@ -20,16 +20,18 @@ import ru.zhogin.app.uikit.Blue
 import ru.zhogin.app.uikit.DarkNavy
 import ru.zhogin.app.uikit.Text2
 import ru.zhogin.app.uikit.White
+import ru.zhogin.app.uikit.state.ColorsState
 
 @Composable
 fun PublicNotDoneTaskItem(
     task: TaskUI,
     modifier: Modifier = Modifier,
+    colorState: ColorsState
 ) {
     Row(
         modifier = modifier
-            .background(DarkNavy, RoundedCornerShape(12.dp))
-            .border(0.5.dp, Blue, RoundedCornerShape(12.dp))
+            .background(colorState.backgroundCardColor, RoundedCornerShape(12.dp))
+            .border(0.5.dp, colorState.borderColor, RoundedCornerShape(12.dp))
 
         ,
         verticalAlignment = Alignment.CenterVertically,
@@ -40,7 +42,7 @@ fun PublicNotDoneTaskItem(
             text = task.title,
             modifier = Modifier.weight(1f),
             style = MaterialTheme.typography.Text2,
-            color = White,
+            color = colorState.textColor,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis
         )
@@ -49,14 +51,14 @@ fun PublicNotDoneTaskItem(
             Text(
                 text = Formater.convertMillsToDate(task.reminderDate),
                 style = MaterialTheme.typography.Text2,
-                color = Blue
+                color = colorState.hintColor
             )
             Spacer(modifier = Modifier.width(8.dp))
         } else {
             Text(
                 text = Formater.convertMillisecondsToTimestamp(task.date),
                 style = MaterialTheme.typography.Text2,
-                color = Blue
+                color = colorState.hintColor
             )
             Spacer(modifier = Modifier.width(8.dp))
         }

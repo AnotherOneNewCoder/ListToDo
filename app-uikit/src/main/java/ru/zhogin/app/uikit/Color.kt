@@ -228,3 +228,13 @@ val Blue = Color(0xFF40A4FF)
 val GradientBlue = Color(0xFF58A6FF)
 val GradientPurple = Color(0xFFEE82EE)
 
+
+val BackgroundColor = Color(0xFF172157)
+val BackgroundCardColor = Color(0xFF0E132E)
+val BorderColor = Color(0xFF40A4FF)
+val TextColor = Color(0xFFFFFFFF)
+val HintColor = Color(0xFF40A4FF)
+val BadgeColor = Color(0xFF580808)
+val FirstGradientColor = Color(0xFF58A6FF)
+val SecondGradientColor = Color(0xFFEE82EE)
+

@@ -21,6 +21,7 @@ import ru.zhogin.app.tasks.common.ClipboardManager
 import ru.zhogin.app.uikit.Blue
 import ru.zhogin.app.uikit.Text1
 import ru.zhogin.app.uikit.White
+import ru.zhogin.app.uikit.state.ColorsState
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -28,6 +29,7 @@ fun TaskInfoSection(
     title: String,
     value: String,
     modifier: Modifier = Modifier,
+    colorState: ColorsState
 ) {
     var copy by rememberSaveable {
         mutableStateOf(false)
@@ -36,7 +38,7 @@ fun TaskInfoSection(
         Text(
             text = title,
             style = MaterialTheme.typography.Text1.copy(
-                color = Blue
+                color = colorState.hintColor
             ),
 
         )
@@ -51,7 +53,7 @@ fun TaskInfoSection(
                 )
                 .verticalScroll(rememberScrollState()),
             style = MaterialTheme.typography.Text1.copy(
-                color = White
+                color = colorState.textColor
             ),
         )
         if (copy) {

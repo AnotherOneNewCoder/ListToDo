@@ -23,6 +23,7 @@ import ru.zhogin.app.tasks.presentation.ui.components.ActionImage
 import ru.zhogin.app.tasks.presentation.ui.components.PublicNotDoneTaskItem
 import ru.zhogin.app.tasks.presentation.ui.components.SwipableItemWithActions
 import ru.zhogin.app.uikit.Navy
+import ru.zhogin.app.uikit.state.ColorsState
 
 
 @Composable
@@ -30,11 +31,12 @@ fun PublicDoneTasksScreen(
     modifier: Modifier,
     state: PublicDoneTasksListState,
     onEvent: (PublicDoneTasksListEvent) -> Unit,
+    colorState: ColorsState,
 ) {
     val context = LocalContext.current
     when (state.isSelectedTaskSheetOpen) {
         true -> DetailDoneTaskSheet(onDismissRequest = { onEvent(PublicDoneTasksListEvent.DismissPublicDoneTasks) },
-            selectedTask = state.selectedTask)
+            selectedTask = state.selectedTask, colorState = colorState)
 
         false -> {}
     }
@@ -42,7 +44,7 @@ fun PublicDoneTasksScreen(
     LazyColumn(
         modifier = modifier
             .fillMaxSize()
-            .background(Navy)
+            .background(colorState.backgroundColor)
     ) {
         itemsIndexed(
             items = state.tasks,
@@ -92,11 +94,12 @@ fun PublicDoneTasksScreen(
                     task = item,
                     modifier = Modifier
                         .fillMaxWidth()
-                        .background(Navy)
+                        .background(colorState.backgroundColor)
                         .clickable {
                             onEvent(PublicDoneTasksListEvent.SelectPublicDoneTask(item))
                         }
-                        .padding(horizontal = 16.dp, vertical = 4.dp)
+                        .padding(horizontal = 16.dp, vertical = 4.dp),
+                    colorState = colorState
                 )
             }
         }

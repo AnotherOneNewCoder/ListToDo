@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-    namespace = "ru.zhogin.app.uikit"
+    namespace = "ru.zhogin.app_settings"
     compileSdk = 34
 
     defaultConfig {
@@ -54,7 +54,7 @@ dependencies {
     implementation(libs.javax.inject)
     implementation(libs.androidx.lifecycle.viewmodule.ktx)
     implementation(libs.androidx.lifecycle.viewmodule.compose)
+    implementation(libs.androidx.datastore)
     kapt(libs.dagger.hilt.compiler)
+    implementation(project(":app-uikit"))
 }
-
-

@@ -22,11 +22,8 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
-import ru.zhogin.app.uikit.Blue
-import ru.zhogin.app.uikit.DarkNavy
-import ru.zhogin.app.uikit.Navy
 import ru.zhogin.app.uikit.TabText
-import ru.zhogin.app.uikit.White
+import ru.zhogin.app_settings.presentation.state.ColorsState
 import ru.zhogin.listtodo.R
 
 @Composable
@@ -34,11 +31,12 @@ internal fun BottomBar(
     navHostController: NavHostController,
     counterNotDone: Int,
     counterDone: Int,
+    colorState: ColorsState,
 ) {
     NavigationBar(
         modifier = Modifier.background(
-            Navy).clip(RoundedCornerShape(topStart = 20.dp, topEnd = 20.dp)).border(0.5.dp,Blue,RoundedCornerShape(topStart = 20.dp, topEnd = 20.dp) ),
-        containerColor = DarkNavy
+            colorState.backgroundColor).clip(RoundedCornerShape(topStart = 20.dp, topEnd = 20.dp)).border(0.5.dp,colorState.borderColor,RoundedCornerShape(topStart = 20.dp, topEnd = 20.dp) ),
+        containerColor = colorState.backgroundCardColor
     ) {
         val items = listOf(
             BottomNavigationItem(
@@ -64,12 +62,17 @@ internal fun BottomBar(
 
         items.forEach { item ->
             NavigationBarItem(
+
                 selected = currentRoute == item.route,
                 onClick = { navHostController.navigate(item.route) },
                 icon = { BadgedBox(
                     badge = {
                         if(item.badgeCount != null && item.badgeCount != 0) {
-                            Badge {
+                            Badge(
+                                containerColor = colorState.badgeColor,
+                                contentColor = colorState.textColor
+                            ) {
+
                                 Text(text = item.badgeCount.toString())
                             }
                         }
@@ -80,16 +83,16 @@ internal fun BottomBar(
                     Text(
                         text = item.title,
                         style = MaterialTheme.typography.TabText,
-                        color = if (currentRoute == item.route) Blue else White
+                        color = if (currentRoute == item.route) colorState.borderColor else colorState.textColor
 
 
                     )
                 },
                 colors = NavigationBarItemDefaults.colors(
-                    selectedIconColor = Blue,
-                    unselectedIconColor = White,
-                    selectedTextColor = Blue,
-                    unselectedTextColor = White,
+                    selectedIconColor = colorState.borderColor,
+                    unselectedIconColor = colorState.textColor,
+                    selectedTextColor = colorState.borderColor,
+                    unselectedTextColor = colorState.textColor,
                     indicatorColor = Color.Transparent
                 )
             )

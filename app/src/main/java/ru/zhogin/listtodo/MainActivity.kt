@@ -16,6 +16,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import ru.zhogin.app.done.presentation.viewmodel.PublicDoneTasksViewModel
 import ru.zhogin.app.tasks.presentation.viewmodel.PublicTasksViewModel
 import ru.zhogin.app.uikit.ListToDoTheme
+import ru.zhogin.app_settings.presentation.viewmodel.ColorViewModel
 import ru.zhogin.listtodo.presentation.ui.bottombar.BottomBar
 import ru.zhogin.listtodo.presentation.ui.navigation.NavigationGraph
 
@@ -30,6 +31,9 @@ class MainActivity : ComponentActivity() {
                 val viewmodel: PublicTasksViewModel = hiltViewModel()
                 val state = viewmodel.stateByDate.collectAsState()
 
+                val colorViewModel: ColorViewModel = hiltViewModel()
+                val colorState = colorViewModel.state.collectAsState()
+
                 val viewmodelDone : PublicDoneTasksViewModel = hiltViewModel()
                 val stateDone = viewmodelDone.state.collectAsState()
                 val navController = rememberNavController()
@@ -39,7 +43,9 @@ class MainActivity : ComponentActivity() {
                         BottomBar(
                             navHostController = navController,
                             counterNotDone = state.value.tasks.size,
-                            counterDone = stateDone.value.tasks.size)
+                            counterDone = stateDone.value.tasks.size,
+                            colorState = colorState.value,
+                        )
                     }
                 ) { innerPadding ->
                     NavigationGraph(
@@ -50,6 +56,8 @@ class MainActivity : ComponentActivity() {
                         onEvent = viewmodel::onEvent,
                         stateDone = stateDone.value,
                         onEventDone = viewmodelDone::onEvent,
+                        colorState = colorState.value,
+                        onColorEvent = colorViewModel::onEvent
                     )
                 }
             }

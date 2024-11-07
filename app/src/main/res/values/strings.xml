@@ -3,4 +3,12 @@
     <string name="in_progress">Current</string>
     <string name="tasks_done_text">Done</string>
     <string name="settings_text">Settings</string>
+    <string name="background_color">"Background color: "</string>
+    <string name="card_color">"Card color: "</string>
+    <string name="border_color">"Border color: "</string>
+    <string name="text_color">"Text color: "</string>
+    <string name="hint_color">"Hint color: "</string>
+    <string name="badge_color">"Badge color: "</string>
+    <string name="first_gradient_color">"First gradient color: "</string>
+    <string name="second_gradient_color">"Second gradient color: "</string>
 </resources>

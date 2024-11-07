@@ -54,12 +54,8 @@ import ru.zhogin.app.tasks.presentation.models.TaskUI
 import ru.zhogin.app.tasks.presentation.state.PublicTasksListState
 import ru.zhogin.app.tasks.presentation.ui.components.ReminderView
 import ru.zhogin.app.tasks.presentation.ui.components.TaskTextField
-import ru.zhogin.app.uikit.Blue
-import ru.zhogin.app.uikit.DarkNavy
-import ru.zhogin.app.uikit.GradientBlue
-import ru.zhogin.app.uikit.GradientPurple
 import ru.zhogin.app.uikit.Title1
-import ru.zhogin.app.uikit.White
+import ru.zhogin.app.uikit.state.ColorsState
 import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.ZoneId
@@ -77,6 +73,7 @@ internal fun AddTaskSheet(
     newTask: TaskUI?,
     onEvent: (PublicTasksListEvent) -> Unit,
     context: Context,
+    colorState: ColorsState,
 ) {
     var isTimePickerVisible by remember {
         mutableStateOf(false)
@@ -166,16 +163,16 @@ internal fun AddTaskSheet(
                 .padding(horizontal = 16.dp),
             shape = RoundedCornerShape(20.dp),
             colors = CardDefaults.cardColors(
-                containerColor = DarkNavy
+                containerColor = colorState.backgroundCardColor
             ),
-            border = BorderStroke(0.5.dp, Blue)
+            border = BorderStroke(0.5.dp, colorState.borderColor)
         ) {
             Spacer(modifier = Modifier.height(8.dp))
             IconButton(onClick = onDismissRequest) {
                 Icon(
                     imageVector = Icons.Rounded.Close,
                     contentDescription = "Dismiss",
-                    tint = Blue
+                    tint = colorState.hintColor
                 )
             }
             Column(
@@ -190,7 +187,7 @@ internal fun AddTaskSheet(
                     text = if (newTask?.id == 0L) stringResource(R.string.create_new_task)
                     else stringResource(R.string.edit_task),
                     style = MaterialTheme.typography.Title1.copy(
-                        color = White
+                        color = colorState.textColor
                     )
                 )
                 Spacer(modifier = Modifier.height(16.dp))
@@ -199,7 +196,8 @@ internal fun AddTaskSheet(
                     placeHolder = stringResource(R.string.title),
                     error = state.validationTitleError,
                     onValueChanged = { onEvent(PublicTasksListEvent.OnTitleChanged(it)) },
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier.fillMaxWidth(),
+                    colorState = colorState,
                 )
                 Spacer(modifier = Modifier.height(16.dp))
                 TaskTextField(
@@ -207,14 +205,15 @@ internal fun AddTaskSheet(
                     placeHolder = stringResource(R.string.description),
                     error = null,
                     onValueChanged = { onEvent(PublicTasksListEvent.OnDescriptionChanged(it)) },
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier.fillMaxWidth(),
+                    colorState = colorState,
                 )
                 Row(
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Text(
                         text = stringResource(R.string.reminder),
-                        color = White
+                        color = colorState.textColor
                     )
                     Spacer(modifier = Modifier.width(12.dp))
                     Switch(
@@ -222,12 +221,12 @@ internal fun AddTaskSheet(
                             onEvent(PublicTasksListEvent.OnReminderChangeStatus(it))
                         },
                         colors = SwitchDefaults.colors(
-                            checkedThumbColor = White,
-                            uncheckedThumbColor = Blue,
-                            uncheckedBorderColor = Blue,
+                            checkedThumbColor = colorState.textColor,
+                            uncheckedThumbColor = colorState.hintColor,
+                            uncheckedBorderColor = colorState.hintColor,
                             checkedBorderColor = Color.Transparent,
                             uncheckedTrackColor = Color.Transparent,
-                            checkedTrackColor = Blue
+                            checkedTrackColor = colorState.hintColor
                         )
                     )
                 }
@@ -237,12 +236,13 @@ internal fun AddTaskSheet(
                         onClickChooseTime = { isTimePickerVisible = true },
                         date = if (dateInMillis > 0L) formatDate.format(dateInMillis) else "--/--/----",
                         time = if (timeInMillis > 0L) format.format(timeInMillis) else "--:--",
+                        colorState = colorState,
                     )
                 }
                 Spacer(modifier = Modifier.height(16.dp))
                 Button(
                     onClick = {
-                        if (newTask?.reminder == true) {
+                        if (newTask?.reminder == true && newTask.title != "") {
 
                             if (newTask.reminderDate > System.currentTimeMillis()) {
                                 setAlarm(context, newTask)
@@ -263,19 +263,22 @@ internal fun AddTaskSheet(
 
                         } else {
                             onEvent(PublicTasksListEvent.SavePublicTask)
-                            Toast.makeText(
-                                context,
-                                context.getString(R.string.task_created),
-                                Toast.LENGTH_SHORT
-                            ).show()
+                            if (newTask?.title != "") {
+                                Toast.makeText(
+                                    context,
+                                    context.getString(R.string.task_created),
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+
                         }
                     },
                     modifier = Modifier
                         .background(
                             brush = Brush.horizontalGradient(
                                 colors = listOf(
-                                    GradientPurple,
-                                    GradientBlue,
+                                    colorState.secondGradientColor,
+                                    colorState.firstGradientColor,
                                 )
                             ),
                             shape = RoundedCornerShape(20.dp)
@@ -287,7 +290,7 @@ internal fun AddTaskSheet(
                 {
                     Text(
                         text = stringResource(R.string.save),
-                        color = White,
+                        color = colorState.textColor,
                     )
                 }
                 Spacer(modifier = Modifier.height(16.dp))

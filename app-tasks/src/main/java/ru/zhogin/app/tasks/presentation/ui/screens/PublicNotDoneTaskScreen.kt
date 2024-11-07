@@ -38,6 +38,7 @@ import ru.zhogin.app.uikit.GradientBlue
 import ru.zhogin.app.uikit.GradientPurple
 import ru.zhogin.app.uikit.Navy
 import ru.zhogin.app.uikit.White
+import ru.zhogin.app.uikit.state.ColorsState
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
@@ -46,6 +47,7 @@ fun PublicNotDoneTaskScreen(
     state: PublicTasksListState,
     newTask: TaskUI?,
     onEvent: (PublicTasksListEvent) -> Unit,
+    colorState: ColorsState,
 ) {
 
     val context = LocalContext.current
@@ -57,6 +59,7 @@ fun PublicNotDoneTaskScreen(
             onEvent = onEvent,
             modifier = modifier,
             context = context,
+            colorState = colorState,
         )
 
         else -> {}
@@ -65,7 +68,8 @@ fun PublicNotDoneTaskScreen(
     when (state.isSelectedTaskSheetOpen) {
         true -> DetailTaskSheet(
             onDismissRequest = { onEvent(PublicTasksListEvent.DismissPublicTasks) },
-            selectedTask = state.selectedTask, onEvent = onEvent
+            selectedTask = state.selectedTask, onEvent = onEvent,
+            colorState = colorState,
         )
 
         false -> {}
@@ -74,7 +78,7 @@ fun PublicNotDoneTaskScreen(
     LazyColumn(
         modifier = modifier
             .fillMaxSize()
-            .background(Navy)
+            .background(colorState.backgroundColor)
 
     ) {
         itemsIndexed(
@@ -142,11 +146,12 @@ fun PublicNotDoneTaskScreen(
                     modifier = Modifier
                         .fillMaxWidth()
                         //.height(45.dp)
-                        .background(Navy)
+                        .background(colorState.backgroundColor)
                         .clickable {
                             onEvent(PublicTasksListEvent.SelectPublicTask(item))
                         }
-                        .padding(horizontal = 16.dp, vertical = 4.dp)
+                        .padding(horizontal = 16.dp, vertical = 4.dp),
+                    colorState = colorState,
                 )
             }
         }
@@ -159,11 +164,11 @@ fun PublicNotDoneTaskScreen(
         contentAlignment = Alignment.BottomEnd
     ) {
         GradientFloatingActionButton(gradientColors = listOf(
-            GradientPurple,
-            GradientBlue,
+            colorState.firstGradientColor,
+            colorState.secondGradientColor,
         ), onClick = { onEvent(PublicTasksListEvent.OnAddNewPublicTaskClick) }) {
             Icon(
-                Icons.Filled.Add, contentDescription = "Add", tint = White,
+                Icons.Filled.Add, contentDescription = "Add", tint = colorState.textColor,
             )
         }
     }

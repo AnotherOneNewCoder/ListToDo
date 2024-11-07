@@ -4,4 +4,12 @@
     <string name="in_progress">Активные</string>
     <string name="tasks_done_text">Выполненые</string>
     <string name="settings_text">Настройки</string>
+    <string name="background_color">"Цвет фона: "</string>
+    <string name="card_color">"Цвет карточки: "</string>
+    <string name="border_color">"Цвет обводки: "</string>
+    <string name="text_color">"Цвет текста: "</string>
+    <string name="hint_color">"Цвет подсказки: "</string>
+    <string name="badge_color">"Цвет бейджа: "</string>
+    <string name="first_gradient_color">"Цвет первой заливки: "</string>
+    <string name="second_gradient_color">"Цвет второй заливки: "</string>
 </resources>

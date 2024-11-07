@@ -31,6 +31,7 @@ import ru.zhogin.app.uikit.Blue
 import ru.zhogin.app.uikit.DarkNavy
 import ru.zhogin.app.uikit.Title1
 import ru.zhogin.app.uikit.White
+import ru.zhogin.app.uikit.state.ColorsState
 
 @Composable
 fun DetailTaskSheet(
@@ -38,6 +39,7 @@ fun DetailTaskSheet(
     selectedTask: TaskUI?,
     onEvent: (PublicTasksListEvent) -> Unit,
     modifier: Modifier = Modifier,
+    colorState: ColorsState
 ) {
     Dialog(
         onDismissRequest = onDismissRequest,
@@ -51,9 +53,9 @@ fun DetailTaskSheet(
                 .padding(16.dp),
             shape = RoundedCornerShape(20.dp),
             colors = CardDefaults.cardColors(
-                containerColor = DarkNavy
+                containerColor = colorState.backgroundCardColor
             ),
-            border = BorderStroke(0.5.dp, Blue)
+            border = BorderStroke(0.5.dp, colorState.borderColor)
         ) {
             Spacer(modifier = Modifier.height(8.dp))
             Column(
@@ -69,7 +71,7 @@ fun DetailTaskSheet(
                         textAlign = TextAlign.Center,
                         modifier = Modifier.fillMaxWidth(),
                         style = MaterialTheme.typography.Title1.copy(
-                            color = White
+                            color = colorState.textColor
                         )
                     )
                 }
@@ -78,7 +80,8 @@ fun DetailTaskSheet(
                 TaskInfoSection(
                     title = stringResource(id = R.string.description) ,
                     value = selectedTask?.description ?: "",
-                    modifier = Modifier.fillMaxHeight(0.7f).fillMaxWidth()
+                    modifier = Modifier.fillMaxHeight(0.7f).fillMaxWidth(),
+                    colorState = colorState,
                 )
                 Spacer(modifier = Modifier.height(16.dp))
                 Box(

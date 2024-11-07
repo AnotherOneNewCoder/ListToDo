@@ -16,6 +16,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import ru.zhogin.app.uikit.Blue
 import ru.zhogin.app.uikit.GradientPurple
+import ru.zhogin.app.uikit.state.ColorsState
 
 @Composable
 internal fun TaskTextField(
@@ -24,6 +25,7 @@ internal fun TaskTextField(
     error: String?,
     onValueChanged: (String) -> Unit,
     modifier: Modifier = Modifier,
+    colorState: ColorsState,
 ) {
     Column(modifier) {
         OutlinedTextField(
@@ -38,15 +40,15 @@ internal fun TaskTextField(
             colors = OutlinedTextFieldDefaults.colors(
                 focusedContainerColor = Color.Transparent,
                 unfocusedContainerColor = Color.Transparent,
-                focusedTextColor = Blue,
-                unfocusedTextColor = Blue,
-                cursorColor = Blue,
-                focusedBorderColor = Blue,
-                unfocusedBorderColor = Blue,
-                focusedLabelColor = Blue,
-                unfocusedLabelColor = Blue,
-                focusedPlaceholderColor = Blue,
-                unfocusedPlaceholderColor = Blue,
+                focusedTextColor = colorState.hintColor,
+                unfocusedTextColor = colorState.hintColor,
+                cursorColor = colorState.hintColor,
+                focusedBorderColor = colorState.borderColor,
+                unfocusedBorderColor = colorState.borderColor,
+                focusedLabelColor = colorState.hintColor,
+                unfocusedLabelColor = colorState.hintColor,
+                focusedPlaceholderColor = colorState.hintColor,
+                unfocusedPlaceholderColor = colorState.hintColor,
 
             )
         )

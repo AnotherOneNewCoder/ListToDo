@@ -21,6 +21,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import ru.zhogin.app.uikit.Blue
 import ru.zhogin.app.uikit.White
+import ru.zhogin.app.uikit.state.ColorsState
 
 @Composable
 internal fun ReminderView(
@@ -29,6 +30,7 @@ internal fun ReminderView(
     onClickChooseTime: () -> Unit,
     date: String,
     time: String,
+    colorState: ColorsState,
     ) {
     Column(
         modifier = modifier.fillMaxWidth(),
@@ -38,7 +40,7 @@ internal fun ReminderView(
             modifier = Modifier
                 .fillMaxWidth(0.5f)
                 .clip(RoundedCornerShape(20.dp))
-                .border(width = 1.dp, Blue, RoundedCornerShape(20.dp)),
+                .border(width = 1.dp, colorState.borderColor, RoundedCornerShape(20.dp)),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Center,
         ) {
@@ -46,11 +48,11 @@ internal fun ReminderView(
                 Icon(
                     imageVector = Icons.Rounded.DateRange,
                     contentDescription = "Choose date",
-                    tint = Blue
+                    tint = colorState.hintColor
                 )
             }
 
-            Text(text = date, color = White)
+            Text(text = date, color = colorState.textColor)
         }
         Spacer(modifier = Modifier.height(16.dp))
         Row(
@@ -58,17 +60,17 @@ internal fun ReminderView(
                 .fillMaxWidth(0.5f)
                 .fillMaxWidth()
                 .clip(RoundedCornerShape(20.dp))
-                .border(width = 1.dp, Blue, RoundedCornerShape(20.dp)),
+                .border(width = 1.dp, colorState.borderColor, RoundedCornerShape(20.dp)),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Center,
         ) {
             IconButton(onClick = onClickChooseTime) {
                 Icon(
                     imageVector = Icons.Rounded.Notifications, contentDescription = "Choose time",
-                    tint = Blue
+                    tint = colorState.borderColor
                 )
             }
-            Text(text = time, color = White)
+            Text(text = time, color = colorState.textColor)
         }
     }
 

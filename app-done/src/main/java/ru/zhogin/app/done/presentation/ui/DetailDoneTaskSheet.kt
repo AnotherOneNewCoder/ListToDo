@@ -35,12 +35,14 @@ import ru.zhogin.app.uikit.DarkNavy
 import ru.zhogin.app.uikit.Navy
 import ru.zhogin.app.uikit.Title1
 import ru.zhogin.app.uikit.White
+import ru.zhogin.app.uikit.state.ColorsState
 
 @Composable
 fun DetailDoneTaskSheet(
     onDismissRequest: () -> Unit,
     selectedTask: TaskUI?,
     modifier: Modifier = Modifier,
+    colorState: ColorsState
 ) {
     Dialog(
         onDismissRequest = onDismissRequest,
@@ -54,9 +56,9 @@ fun DetailDoneTaskSheet(
                 .padding(16.dp),
             shape = RoundedCornerShape(20.dp),
             colors = CardDefaults.cardColors(
-                containerColor = DarkNavy
+                containerColor = colorState.backgroundCardColor
             ),
-            border = BorderStroke(0.5.dp, Blue)
+            border = BorderStroke(0.5.dp, colorState.borderColor)
         ) {
 
             Spacer(modifier = Modifier.height(8.dp))
@@ -74,7 +76,7 @@ fun DetailDoneTaskSheet(
                         textAlign = TextAlign.Center,
                         modifier = Modifier.fillMaxWidth(),
                         style = MaterialTheme.typography.Title1.copy(
-                            color = White
+                            color = colorState.textColor
                         )
                     )
                 }
@@ -84,7 +86,8 @@ fun DetailDoneTaskSheet(
                 TaskInfoSection(
                     title = stringResource(R.string.description),
                     value = selectedTask?.description ?: "",
-                    modifier = Modifier.fillMaxHeight(0.8f).fillMaxWidth()
+                    modifier = Modifier.fillMaxHeight(0.8f).fillMaxWidth(),
+                    colorState = colorState,
                 )
                 Spacer(modifier = Modifier.height(16.dp))
                 Box(
@@ -92,10 +95,10 @@ fun DetailDoneTaskSheet(
                     contentAlignment = Alignment.BottomEnd
                 ) {
                     GradientFloatingActionButton(gradientColors = listOf(
-                        Blue,
-                        Navy,
+                        colorState.hintColor,
+                        colorState.backgroundColor,
                     ), onClick = onDismissRequest) {
-                        Icon(imageVector = Icons.Filled.Done, contentDescription = "Done", tint = White)
+                        Icon(imageVector = Icons.Filled.Done, contentDescription = "Done", tint = colorState.textColor)
                     }
                 }
 
