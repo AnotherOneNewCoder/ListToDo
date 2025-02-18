@@ -63,17 +63,6 @@ class DataStoreManagerImpl @Inject constructor(
             secondGradientColor = pref[intPreferencesKey(SECOND_GRADIENT_COLOR)] ?: SecondGradientColor.toArgb(),
             thirdGradientColor = pref[intPreferencesKey(THIRD_GRADIENT_COLOR)] ?: ThirdGradientColor.toArgb(),
             fourthGradientColor = pref[intPreferencesKey(FOURTH_GRADIENT_COLOR)] ?: FourthGradientColor.toArgb(),
-
-//
-//            backgroundColor = pref[intPreferencesKey(BACKGROUND_COLOR)] ?: 0xFF172157,
-//            backgroundCardColor = pref[intPreferencesKey(CARD_COLOR)] ?: 0xFF0E132E,
-//            borderColor = pref[intPreferencesKey(BORDER_COLOR)] ?: 0xFF40A4FF,
-//            textColor = pref[intPreferencesKey(TEXT_COLOR)] ?: 0xFFFFFFFF,
-//            hintColor = pref[intPreferencesKey(HINT_COLOR)] ?: 0xFF40A4FF,
-//            badgeColor = pref[intPreferencesKey(BADGE_COLOR)] ?: 0xFF580808,
-//            firstGradientColor = pref[intPreferencesKey(FIRST_GRADIENT_COLOR)] ?: 0xFF58A6FF,
-//            secondGradientColor = pref[intPreferencesKey(SECOND_GRADIENT_COLOR)] ?: 0xFFEE82EE,
-
         )
     }
 }

@@ -13,7 +13,6 @@ import ru.zhogin.app.uikit.TextColor
 import ru.zhogin.app.uikit.ThirdGradientColor
 
 data class ColorsState(
-    //val selectedColor: ColorModel? = null,
     val selectedColor: Color? = null,
     val backgroundColor : Color = BackgroundColor,
     val backgroundCardColor : Color = BackgroundCardColor,
@@ -26,7 +25,6 @@ data class ColorsState(
     val thirdGradientColor : Color = ThirdGradientColor,
     val fourthGradientColor : Color = FourthGradientColor,
     val isColorPickerSheetOpen: Boolean = false,
-
 )
 
 

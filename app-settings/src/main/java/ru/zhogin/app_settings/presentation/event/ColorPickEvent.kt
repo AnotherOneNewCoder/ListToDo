@@ -1,14 +1,11 @@
 package ru.zhogin.app_settings.presentation.event
 
 import androidx.compose.ui.graphics.Color
-import ru.zhogin.app_settings.presentation.model.ColorModel
 
 
 sealed interface ColorPickEvent {
-//    data object OnOpenColorPicker : ColorPickEvent
     data class OnOpenColorPicker(val color: Color): ColorPickEvent
     data object OnCloseColorPicker : ColorPickEvent
-    data class SelectedColor(val colorModel: ColorModel) : ColorPickEvent
     data object SaveColor : ColorPickEvent
     data object ResetToDefault : ColorPickEvent
     data class ChangeBackgroundColor(val color: Color) : ColorPickEvent

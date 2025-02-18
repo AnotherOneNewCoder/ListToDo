@@ -30,7 +30,6 @@ import ru.zhogin.app.uikit.ThirdGradientColor
 import ru.zhogin.app_settings.data.model.SettingsData
 import ru.zhogin.app_settings.domain.DataStoreManager
 import ru.zhogin.app_settings.presentation.event.ColorPickEvent
-import ru.zhogin.app_settings.presentation.model.ColorModel
 import ru.zhogin.app_settings.presentation.state.ColorsState
 import javax.inject.Inject
 
@@ -38,12 +37,6 @@ import javax.inject.Inject
 class ColorViewModel @Inject constructor(
     private val dataStoreManager: DataStoreManager
 ) : ViewModel() {
-//    var state = MutableStateFlow(ColorsState())
-//        private set
-
-//    val state : StateFlow<ColorsState> = dataStoreManager.getSettings()
-//        .map { it.toColorState() }
-//        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000L), ColorsState())
 
     private val _state = MutableStateFlow(ColorsState())
     val state = _state
@@ -52,9 +45,8 @@ class ColorViewModel @Inject constructor(
         }
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000L), _state.value)
 
-    var newColor: ColorModel? by mutableStateOf(null)
 
-    var newColor2: Color? by mutableStateOf(null)
+    private var newColor2: Color? by mutableStateOf(null)
     private var colorJob: Job? = null
 
     fun onEvent(event: ColorPickEvent) {
@@ -87,13 +79,14 @@ class ColorViewModel @Inject constructor(
                         badgeColor = BadgeColor,
                         firstGradientColor = FirstGradientColor,
                         secondGradientColor = SecondGradientColor,
+                        thirdGradientColor = ThirdGradientColor,
+                        fourthGradientColor = FourthGradientColor,
                         isColorPickerSheetOpen = false,
                     )
                 }
                 viewModelScope.launch {
                     dataStoreManager.saveSettings(
                         SettingsData(
-                            //backgroundColor = "0xFF172157",
                             backgroundColor = BackgroundColor.toArgb(),
                             backgroundCardColor = BackgroundCardColor.toArgb(),
                             borderColor = BorderColor.toArgb(),
@@ -110,15 +103,15 @@ class ColorViewModel @Inject constructor(
             }
 
 
-            is ColorPickEvent.SelectedColor -> {
-                _state.update {
-                    _state.value.copy(
-                        selectedColor = newColor2,
-                        isColorPickerSheetOpen = true,
-                    )
-                }
-
-            }
+//            is ColorPickEvent.SelectedColor -> {
+//                _state.update {
+//                    _state.value.copy(
+//                        selectedColor = newColor2,
+//                        isColorPickerSheetOpen = true,
+//                    )
+//                }
+//
+//            }
 
             is ColorPickEvent.SaveColor -> {
                 viewModelScope.launch {
@@ -131,7 +124,6 @@ class ColorViewModel @Inject constructor(
                             hintColor = _state.value.hintColor.toArgb(),
                             badgeColor = _state.value.badgeColor.toArgb(),
                             firstGradientColor = _state.value.firstGradientColor.toArgb(),
-                            //secondGradientColor = _state.value.secondGradientColor.value.toLong(),
                             secondGradientColor = _state.value.secondGradientColor.toArgb(),
                             thirdGradientColor = _state.value.thirdGradientColor.toArgb(),
                             fourthGradientColor = _state.value.fourthGradientColor.toArgb(),
@@ -222,6 +214,7 @@ class ColorViewModel @Inject constructor(
                     )
                 }
             }
+
             is ColorPickEvent.ChangeThirdGradientColor -> {
                 _state.update {
                     _state.value.copy(
@@ -248,15 +241,8 @@ class ColorViewModel @Inject constructor(
                         hintColor = Color(settingsData.hintColor),
                         firstGradientColor = Color(settingsData.firstGradientColor),
                         secondGradientColor = Color(settingsData.secondGradientColor),
-
-//                        backgroundColor = Color(settingsData.backgroundColor.toLong()),
-//                        badgeColor = Color(settingsData.badgeColor.toLong()),
-//                        backgroundCardColor = Color(settingsData.backgroundCardColor.toLong()),
-//                        borderColor = Color(settingsData.borderColor.toLong()),
-//                        textColor = Color(settingsData.textColor.toLong()),
-//                        hintColor = Color(settingsData.hintColor.toLong()),
-//                        firstGradientColor = Color(settingsData.firstGradientColor.toLong()),
-//                        secondGradientColor = Color(settingsData.secondGradientColor.toLong()),
+                        thirdGradientColor = Color(settingsData.thirdGradientColor),
+                        fourthGradientColor = Color(settingsData.fourthGradientColor),
                     )
                 }
             }
