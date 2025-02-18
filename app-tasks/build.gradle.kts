@@ -10,7 +10,7 @@ plugins {
 
 android {
     namespace = "ru.zhogin.app.tasks"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         minSdk = 24
@@ -56,6 +56,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodule.ktx)
     implementation(libs.androidx.lifecycle.viewmodule.compose)
     implementation(libs.google.code.gson)
+    implementation(project(":app-settings"))
     kapt(libs.dagger.hilt.compiler)
     ksp(libs.androidx.room.compiler)
     api(libs.androidx.room.ktx)

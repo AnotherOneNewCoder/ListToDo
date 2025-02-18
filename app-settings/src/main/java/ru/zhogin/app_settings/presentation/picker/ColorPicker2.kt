@@ -1,6 +1,7 @@
 package ru.zhogin.app_settings.presentation.picker
 
 import android.graphics.Color.HSVToColor
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.gestures.Orientation
@@ -9,7 +10,6 @@ import androidx.compose.foundation.gestures.draggable
 import androidx.compose.foundation.gestures.rememberDraggableState
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
@@ -36,11 +36,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.Dp
@@ -51,15 +51,17 @@ import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import ru.zhogin.app.uikit.BackgroundCardColor
 import ru.zhogin.app.uikit.Black
-import ru.zhogin.app.uikit.Navy
 import ru.zhogin.app.uikit.R
 import ru.zhogin.app.uikit.White
+import ru.zhogin.app_settings.presentation.state.ColorsState
 import kotlin.math.roundToInt
+
 
 @Composable
 fun ColorPicker2(
     modifier: Modifier = Modifier,
     color: Color,
+    colorsState: ColorsState,
     onColorSelected: (Color) -> Unit,
     onDismissRequest: () -> Unit,
 ) {
@@ -77,40 +79,50 @@ fun ColorPicker2(
             with(density) {
 
                 // default position of selector
-                -colorMapSelectionRadius.toPx()
+               // -colorMapSelectionRadius.toPx()
+                -colorMapSelectionRadius.toPx() +  colorMapWidth.toPx() / 360f * getHeuFromColor(color)
+
+
             }
         )
     }
 
     // ========= color saturation =========
     val saturationSelectorRadius = 10.dp
+
+
+
+    val saturation = remember {
+        mutableFloatStateOf(getSaturationFromColor(color))
+    }
     val saturationOffsetPx = remember {
         mutableFloatStateOf(
             with(density) {
                 // the saturation default value is 1, so the selector default position should be on the right side
-                (colorMapWidth - saturationSelectorRadius).toPx()
+                //(colorMapWidth - saturationSelectorRadius).toPx()
+                (colorMapWidth - saturationSelectorRadius).toPx() - (1f - saturation.floatValue)*(colorMapWidth).toPx()
             }
         )
     }
-    val saturation = remember {
-        mutableFloatStateOf(1f)
-    }
+
 
     // ========= color saturation =========
 
     // ========= color lightness =========
+    val lightness = remember {
+        mutableFloatStateOf(getLightnessFromColor(color))
+    }
     val lightnessSelectorRadius = 10.dp
     val lightnessOffsetPx = remember {
         mutableFloatStateOf(
             with(density) {
                 // the lightness default value is 1, so the selector default position should be on the right side
-                (colorMapWidth - lightnessSelectorRadius).toPx()
+                //(colorMapWidth - lightnessSelectorRadius).toPx()
+                (colorMapWidth - lightnessSelectorRadius).toPx() - (1f - lightness.floatValue)*(colorMapWidth).toPx()
             }
         )
     }
-    val lightness = remember {
-        mutableFloatStateOf(1f)
-    }
+
     // ========= color lightness =========
 
 
@@ -126,7 +138,7 @@ fun ColorPicker2(
     ) {
         Surface(
             modifier = modifier.fillMaxSize(),
-            color = Navy,
+            color = colorsState.backgroundColor,
         ) {
             Column(
                 modifier = Modifier
@@ -153,7 +165,7 @@ fun ColorPicker2(
 
                 Text(
                     text = stringResource(R.string.saturation),
-                    color = White,
+                    color = colorsState.textColor,
                     fontSize = 14.sp,
                     modifier = Modifier
                         .fillMaxWidth(),
@@ -181,7 +193,7 @@ fun ColorPicker2(
                     }
                 )
                 Text(
-                    text = stringResource(R.string.lightness), color = White, fontSize = 14.sp, modifier = Modifier
+                    text = stringResource(R.string.lightness), color = colorsState.textColor, fontSize = 14.sp, modifier = Modifier
                         .fillMaxWidth(),
                     textAlign = TextAlign.Center
                 )
@@ -209,7 +221,6 @@ fun ColorPicker2(
 
                 // selected color result
                 Spacer(modifier = Modifier.padding(vertical = 10.dp))
-//            ColorResult(color = selectedColor.value)
                 ColorResult(color = getSelectedColor(
                     colorMapOffset = calculateCorrectOffset(
                         selectorOffset = colorMapOffsetPx.floatValue,
@@ -222,8 +233,10 @@ fun ColorPicker2(
                     },
                     saturation = saturation.floatValue,
                     lightness = lightness.floatValue,
+                ),
+                    borderColor = colorsState.borderColor
                 )
-                )
+                Spacer(modifier = Modifier.padding(vertical = 10.dp))
                 Box(
                     modifier = Modifier.fillMaxWidth(),
                     contentAlignment = Alignment.Center
@@ -246,9 +259,10 @@ fun ColorPicker2(
                     },
                         colors = ButtonDefaults.buttonColors(
                             BackgroundCardColor
-                        )
+                        ),
+                        border = BorderStroke(0.5.dp, colorsState.borderColor)
                         ) {
-                        Text(text = stringResource(R.string.apply), color = White)
+                        Text(text = stringResource(R.string.apply), color = colorsState.textColor)
                     }
                 }
 
@@ -285,6 +299,7 @@ private fun SLSelector(
                         val offsetPx = offset.x - with(density) {
                             // the tapped position need to minus the selector's radius as the correct position for the selector
                             slSelectorRadius.toPx()
+
                         }
 
                         onSLOffsetPx(offsetPx)
@@ -326,6 +341,7 @@ private fun SLSelector(
 @Composable
 private fun ColorResult(
     color: Color,
+    borderColor: Color,
 ) {
     Column(
         modifier = Modifier
@@ -338,41 +354,42 @@ private fun ColorResult(
                 .padding(horizontal = 100.dp)
                 .aspectRatio(1f),
             color = color,
-            shape = RoundedCornerShape(8.dp)
+            shape = RoundedCornerShape(8.dp),
+            border = BorderStroke(0.5.dp, borderColor)
         ) {}
 
         Spacer(modifier = Modifier.padding(vertical = 6.dp))
-        Row(
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Text(
-                text = "R: ${color.red * 255}",
-                fontSize = 20.sp,
-                fontWeight = FontWeight.Bold,
-                color = White,
-            )
-            Spacer(modifier = Modifier.padding(horizontal = 6.dp))
-            Text(
-                text = "G: ${color.green * 255}",
-                fontSize = 20.sp,
-                fontWeight = FontWeight.Bold,
-                color = White,
-            )
-            Spacer(modifier = Modifier.padding(horizontal = 6.dp))
-            Text(
-                text = "B: ${color.blue * 255}",
-                fontSize = 20.sp,
-                fontWeight = FontWeight.Bold,
-                color = White,
-            )
-        }
-        Spacer(modifier = Modifier.padding(vertical = 2.dp))
-        Text(
-            text = color.toHexCode(),
-            fontSize = 20.sp,
-            fontWeight = FontWeight.Bold,
-            color = White,
-        )
+//        Row(
+//            verticalAlignment = Alignment.CenterVertically
+//        ) {
+//            Text(
+//                text = "R: ${color.red * 255}",
+//                fontSize = 20.sp,
+//                fontWeight = FontWeight.Bold,
+//                color = White,
+//            )
+//            Spacer(modifier = Modifier.padding(horizontal = 6.dp))
+//            Text(
+//                text = "G: ${color.green * 255}",
+//                fontSize = 20.sp,
+//                fontWeight = FontWeight.Bold,
+//                color = White,
+//            )
+//            Spacer(modifier = Modifier.padding(horizontal = 6.dp))
+//            Text(
+//                text = "B: ${color.blue * 255}",
+//                fontSize = 20.sp,
+//                fontWeight = FontWeight.Bold,
+//                color = White,
+//            )
+//        }
+//        Spacer(modifier = Modifier.padding(vertical = 2.dp))
+//        Text(
+//            text = color.toHexCode(),
+//            fontSize = 20.sp,
+//            fontWeight = FontWeight.Bold,
+//            color = White,
+//        )
     }
 }
 
@@ -520,4 +537,28 @@ private fun createColorMap(colorMapWidth: Float): Brush {
         startX = 0f,
         endX = colorMapWidth,
     )
+}
+
+private fun getSaturationFromColor(color: Color) : Float {
+    var hsv = FloatArray(3)
+    android.graphics.Color.colorToHSV(color.toArgb(), hsv)
+    val saturation = hsv[1]
+
+    return saturation
+}
+
+private fun getLightnessFromColor(color: Color) : Float {
+    var hsv = FloatArray(3)
+    android.graphics.Color.colorToHSV(color.toArgb(), hsv)
+    val lightness = hsv[2]
+
+    return lightness
+}
+
+private fun getHeuFromColor(color: Color) : Float {
+    var hsv = FloatArray(3)
+    android.graphics.Color.colorToHSV(color.toArgb(), hsv)
+    val heu = hsv[0]
+
+    return heu
 }

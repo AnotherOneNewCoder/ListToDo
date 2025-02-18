@@ -34,11 +34,8 @@ import ru.zhogin.app.tasks.presentation.ui.components.PublicNotDoneTaskItem
 import ru.zhogin.app.tasks.presentation.ui.components.SwipableItemWithActions
 import ru.zhogin.app.tasks.presentation.ui.dialogs.AddTaskSheet
 import ru.zhogin.app.tasks.presentation.ui.dialogs.DetailTaskSheet
-import ru.zhogin.app.uikit.GradientBlue
-import ru.zhogin.app.uikit.GradientPurple
-import ru.zhogin.app.uikit.Navy
-import ru.zhogin.app.uikit.White
-import ru.zhogin.app.uikit.state.ColorsState
+import ru.zhogin.app_settings.presentation.state.ColorsState
+
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable

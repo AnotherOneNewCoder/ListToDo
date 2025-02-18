@@ -237,4 +237,6 @@ val HintColor = Color(0xFF40A4FF)
 val BadgeColor = Color(0xFF580808)
 val FirstGradientColor = Color(0xFF58A6FF)
 val SecondGradientColor = Color(0xFFEE82EE)
+val ThirdGradientColor = Color(0xFF172157)
+val FourthGradientColor = Color(0xFF58A6FF)
 

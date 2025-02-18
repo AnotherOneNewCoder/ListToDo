@@ -55,7 +55,8 @@ import ru.zhogin.app.tasks.presentation.state.PublicTasksListState
 import ru.zhogin.app.tasks.presentation.ui.components.ReminderView
 import ru.zhogin.app.tasks.presentation.ui.components.TaskTextField
 import ru.zhogin.app.uikit.Title1
-import ru.zhogin.app.uikit.state.ColorsState
+import ru.zhogin.app_settings.presentation.state.ColorsState
+
 import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.ZoneId

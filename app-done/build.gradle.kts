@@ -9,7 +9,7 @@ plugins {
 
 android {
     namespace = "ru.zhogin.app.done"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         minSdk = 24
@@ -55,4 +55,5 @@ dependencies {
     api(libs.androidx.room.ktx)
     implementation(project(":app-uikit"))
     implementation(project(":app-tasks"))
+    implementation(project(":app-settings"))
 }

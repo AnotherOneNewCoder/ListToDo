@@ -26,16 +26,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import ru.zhogin.app.done.R
-
 import ru.zhogin.app.tasks.presentation.models.TaskUI
 import ru.zhogin.app.tasks.presentation.ui.components.GradientFloatingActionButton
 import ru.zhogin.app.tasks.presentation.ui.components.TaskInfoSection
-import ru.zhogin.app.uikit.Blue
-import ru.zhogin.app.uikit.DarkNavy
-import ru.zhogin.app.uikit.Navy
 import ru.zhogin.app.uikit.Title1
-import ru.zhogin.app.uikit.White
-import ru.zhogin.app.uikit.state.ColorsState
+import ru.zhogin.app_settings.presentation.state.ColorsState
+
 
 @Composable
 fun DetailDoneTaskSheet(

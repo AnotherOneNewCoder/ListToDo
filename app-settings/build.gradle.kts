@@ -8,7 +8,7 @@ plugins {
 
 android {
     namespace = "ru.zhogin.app_settings"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         minSdk = 24
@@ -55,6 +55,8 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodule.ktx)
     implementation(libs.androidx.lifecycle.viewmodule.compose)
     implementation(libs.androidx.datastore)
+    //implementation(libs.test.picker)
     kapt(libs.dagger.hilt.compiler)
     implementation(project(":app-uikit"))
+
 }

@@ -14,9 +14,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import ru.zhogin.app.uikit.Blue
 import ru.zhogin.app.uikit.GradientPurple
-import ru.zhogin.app.uikit.state.ColorsState
+import ru.zhogin.app_settings.presentation.state.ColorsState
+
 
 @Composable
 internal fun TaskTextField(

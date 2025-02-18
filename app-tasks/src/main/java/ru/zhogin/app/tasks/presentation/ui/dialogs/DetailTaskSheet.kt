@@ -27,11 +27,9 @@ import ru.zhogin.app.tasks.presentation.event.PublicTasksListEvent
 import ru.zhogin.app.tasks.presentation.models.TaskUI
 import ru.zhogin.app.tasks.presentation.ui.components.SmallFloatingActionButtons
 import ru.zhogin.app.tasks.presentation.ui.components.TaskInfoSection
-import ru.zhogin.app.uikit.Blue
-import ru.zhogin.app.uikit.DarkNavy
 import ru.zhogin.app.uikit.Title1
-import ru.zhogin.app.uikit.White
-import ru.zhogin.app.uikit.state.ColorsState
+import ru.zhogin.app_settings.presentation.state.ColorsState
+
 
 @Composable
 fun DetailTaskSheet(
@@ -72,7 +70,8 @@ fun DetailTaskSheet(
                         modifier = Modifier.fillMaxWidth(),
                         style = MaterialTheme.typography.Title1.copy(
                             color = colorState.textColor
-                        )
+                        ),
+                        color = colorState.textColor
                     )
                 }
                 Spacer(modifier = Modifier.height(16.dp))
@@ -94,6 +93,7 @@ fun DetailTaskSheet(
                             onEvent(PublicTasksListEvent.EditPublicTask(it))
                         } },
                         onDismiss = onDismissRequest,
+                        colorState = colorState
                         )
                 }
                 Spacer(modifier = Modifier.height(16.dp))

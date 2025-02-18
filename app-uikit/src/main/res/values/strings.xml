@@ -3,4 +3,5 @@
     <string name="lightness">lightness</string>
     <string name="saturation">saturation</string>
     <string name="apply">Apply</string>
+
 </resources>

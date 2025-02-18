@@ -22,8 +22,7 @@ import ru.zhogin.app.tasks.presentation.models.TaskUI
 import ru.zhogin.app.tasks.presentation.ui.components.ActionImage
 import ru.zhogin.app.tasks.presentation.ui.components.PublicNotDoneTaskItem
 import ru.zhogin.app.tasks.presentation.ui.components.SwipableItemWithActions
-import ru.zhogin.app.uikit.Navy
-import ru.zhogin.app.uikit.state.ColorsState
+import ru.zhogin.app_settings.presentation.state.ColorsState
 
 
 @Composable

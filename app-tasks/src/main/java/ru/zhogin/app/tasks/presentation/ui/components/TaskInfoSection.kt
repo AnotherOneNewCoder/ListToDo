@@ -18,10 +18,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import ru.zhogin.app.tasks.common.ClipboardManager
-import ru.zhogin.app.uikit.Blue
 import ru.zhogin.app.uikit.Text1
-import ru.zhogin.app.uikit.White
-import ru.zhogin.app.uikit.state.ColorsState
+import ru.zhogin.app_settings.presentation.state.ColorsState
+
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="background_color">"Цвет фона: "</string>
+    <string name="card_color">"Цвет карточки: "</string>
+    <string name="border_color">"Цвет обводки: "</string>
+    <string name="text_color">"Цвет текста: "</string>
+    <string name="hint_color">"Цвет подсказки: "</string>
+    <string name="badge_color">"Цвет бейджа: "</string>
+    <string name="first_gradient_color">"Цвет первой заливки: "</string>
+    <string name="second_gradient_color">"Цвет второй заливки: "</string>
+    <string name="save_colors">Сохранить цвета</string>
+    <string name="reset_to_default">Сбросить цвета</string>
+    <string name="fourth_gradient_color">"Цвет четвертой заливки: "</string>
+    <string name="third_gradient_color">"Цвет третьей заливки: "</string>
+</resources>

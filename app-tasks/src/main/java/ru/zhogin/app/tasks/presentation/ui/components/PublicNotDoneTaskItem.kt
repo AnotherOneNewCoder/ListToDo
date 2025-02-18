@@ -16,11 +16,9 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import ru.zhogin.app.tasks.common.util.Formater
 import ru.zhogin.app.tasks.presentation.models.TaskUI
-import ru.zhogin.app.uikit.Blue
-import ru.zhogin.app.uikit.DarkNavy
 import ru.zhogin.app.uikit.Text2
-import ru.zhogin.app.uikit.White
-import ru.zhogin.app.uikit.state.ColorsState
+import ru.zhogin.app_settings.presentation.state.ColorsState
+
 
 @Composable
 fun PublicNotDoneTaskItem(
