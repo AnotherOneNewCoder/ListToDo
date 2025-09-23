@@ -258,7 +258,7 @@ fun ColorPicker2(
                         onColorSelected(selectedColor.value)
                     },
                         colors = ButtonDefaults.buttonColors(
-                            BackgroundCardColor
+                            containerColor = colorsState.backgroundCardColor
                         ),
                         border = BorderStroke(0.5.dp, colorsState.borderColor)
                         ) {

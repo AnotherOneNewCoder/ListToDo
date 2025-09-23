@@ -18,6 +18,7 @@ room = "2.6.1"
 ksp = "2.0.20-1.0.24"
 gson_version = "2.10.1"
 dataStore = "1.1.2"
+serialization-json = "1.6.3"
 
 
 [libraries]
@@ -55,6 +56,8 @@ google-code-gson = { module = "com.google.code.gson:gson", version.ref = "gson_v
 
 androidx-datastore = { module = "androidx.datastore:datastore-preferences", version.ref = "dataStore" }
 
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serialization-json" }
+
 
 
 [plugins]
@@ -66,4 +69,5 @@ dagger-hilt-android = { id = "com.google.dagger.hilt.android", version.ref = "da
 kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 androidx-room = { id = "androidx.room", version.ref = "room" }
+kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 
