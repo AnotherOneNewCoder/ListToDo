@@ -9,9 +9,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.zhogin.common.ui.models.TaskUI
+import com.zhogin.common.utils.Formater
 import ru.zhogin.app.done.R
-import ru.zhogin.app.tasks.common.util.Formater
-import ru.zhogin.app.tasks.presentation.models.TaskUI
 import ru.zhogin.app.uikit.Title3
 import ru.zhogin.app.uikit.White
 

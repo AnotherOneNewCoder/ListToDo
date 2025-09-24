@@ -1,4 +1,4 @@
-package ru.zhogin.app.tasks.presentation.ui.components
+package com.zhogin.common.ui.components
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.combinedClickable
@@ -17,7 +17,8 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import ru.zhogin.app.tasks.common.ClipboardManager
+import com.zhogin.common.utils.ClipboardManager
+
 import ru.zhogin.app.uikit.Text1
 import ru.zhogin.app_settings.presentation.state.ColorsState
 

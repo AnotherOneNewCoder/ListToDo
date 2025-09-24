@@ -1,4 +1,4 @@
-package ru.zhogin.app.tasks.common
+package com.zhogin.common.utils
 
 import android.content.ClipData
 import android.content.ClipboardManager

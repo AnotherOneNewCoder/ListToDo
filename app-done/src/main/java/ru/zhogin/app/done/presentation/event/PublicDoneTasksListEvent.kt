@@ -1,7 +1,7 @@
 package ru.zhogin.app.done.presentation.event
 
+import com.zhogin.common.ui.models.TaskUI
 
-import ru.zhogin.app.tasks.presentation.models.TaskUI
 
 sealed interface PublicDoneTasksListEvent {
     data object DismissPublicDoneTasks: PublicDoneTasksListEvent

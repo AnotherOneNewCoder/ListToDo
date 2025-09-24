@@ -1,4 +1,4 @@
-package ru.zhogin.app.tasks.presentation.ui.components
+package com.zhogin.common.ui.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -14,8 +14,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import ru.zhogin.app.tasks.common.util.Formater
-import ru.zhogin.app.tasks.presentation.models.TaskUI
+import com.zhogin.common.ui.models.TaskUI
+import com.zhogin.common.utils.Formater
+
 import ru.zhogin.app.uikit.Text2
 import ru.zhogin.app_settings.presentation.state.ColorsState
 

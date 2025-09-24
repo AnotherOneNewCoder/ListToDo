@@ -1,4 +1,4 @@
-package ru.zhogin.app.tasks.presentation.ui.components
+package com.zhogin.common.ui.components
 
 
 import androidx.compose.foundation.Image

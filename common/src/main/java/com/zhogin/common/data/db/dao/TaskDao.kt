@@ -1,4 +1,4 @@
-package ru.zhogin.app.tasks.data.db.dao
+package com.zhogin.common.data.db.dao
 
 import androidx.room.Dao
 import androidx.room.Delete
@@ -6,8 +6,8 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
+import com.zhogin.common.data.db.models.TaskDbo
 import kotlinx.coroutines.flow.Flow
-import ru.zhogin.app.tasks.data.db.models.TaskDbo
 
 @Dao
 interface TaskDao {

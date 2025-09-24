@@ -22,11 +22,11 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
-import ru.zhogin.app.tasks.R
+import com.zhogin.common.R
+import com.zhogin.common.ui.components.TaskInfoSection
+import com.zhogin.common.ui.models.TaskUI
 import ru.zhogin.app.tasks.presentation.event.PublicTasksListEvent
-import ru.zhogin.app.tasks.presentation.models.TaskUI
 import ru.zhogin.app.tasks.presentation.ui.components.SmallFloatingActionButtons
-import ru.zhogin.app.tasks.presentation.ui.components.TaskInfoSection
 import ru.zhogin.app.uikit.Title1
 import ru.zhogin.app_settings.presentation.state.ColorsState
 

@@ -1,4 +1,4 @@
-package ru.zhogin.app.tasks.common.util
+package com.zhogin.common.utils
 
 import java.text.SimpleDateFormat
 import java.util.Date

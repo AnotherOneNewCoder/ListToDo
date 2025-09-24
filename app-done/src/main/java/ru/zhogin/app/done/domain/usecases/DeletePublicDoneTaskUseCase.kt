@@ -1,7 +1,8 @@
 package ru.zhogin.app.done.domain.usecases
 
+import com.zhogin.common.domain.Task
 import ru.zhogin.app.done.domain.repository.PublicDoneTasksRepository
-import ru.zhogin.app.tasks.domain.models.Task
+
 import javax.inject.Inject
 
 class DeletePublicDoneTaskUseCase @Inject constructor(

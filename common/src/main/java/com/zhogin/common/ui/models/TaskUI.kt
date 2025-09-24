@@ -1,6 +1,6 @@
-package ru.zhogin.app.tasks.domain.models
+package com.zhogin.common.ui.models
 
-data class Task(
+data class TaskUI(
     val id: Long,
     val title: String,
     val description: String?,
@@ -10,5 +10,5 @@ data class Task(
     val doneDate: Long,
     val reminder: Boolean,
     val reminderDate: Long,
+    val isOptionsRevealed: Boolean,
 )
-

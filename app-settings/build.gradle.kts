@@ -8,7 +8,7 @@ plugins {
 
 android {
     namespace = "ru.zhogin.app_settings"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         minSdk = 24
@@ -58,5 +58,6 @@ dependencies {
     //implementation(libs.test.picker)
     kapt(libs.dagger.hilt.compiler)
     implementation(project(":app-uikit"))
+    //implementation(project(":common"))
 
 }

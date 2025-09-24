@@ -1,4 +1,4 @@
-package ru.zhogin.app.tasks.data.db.models
+package com.zhogin.common.data.db.models
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

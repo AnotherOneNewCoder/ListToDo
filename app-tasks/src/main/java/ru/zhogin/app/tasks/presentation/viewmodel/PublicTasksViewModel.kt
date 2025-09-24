@@ -5,6 +5,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.zhogin.common.ui.mapper.toTask
+import com.zhogin.common.ui.mapper.toTaskUi
+import com.zhogin.common.ui.models.TaskUI
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -13,15 +16,12 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import ru.zhogin.app.tasks.common.toTask
-import ru.zhogin.app.tasks.common.toTaskUi
 import ru.zhogin.app.tasks.domain.usecases.DeletePublicTaskUseCase
 import ru.zhogin.app.tasks.domain.usecases.GetAllPublicNotDoneTasksByDateUseCase
 import ru.zhogin.app.tasks.domain.usecases.GetAllPublicTasksByPriorityUseCase
 import ru.zhogin.app.tasks.domain.usecases.InsertPublicTaskUseCase
 import ru.zhogin.app.tasks.domain.usecases.UpdatePublicTaskUseCase
 import ru.zhogin.app.tasks.presentation.event.PublicTasksListEvent
-import ru.zhogin.app.tasks.presentation.models.TaskUI
 import ru.zhogin.app.tasks.presentation.state.PublicTasksListState
 import javax.inject.Inject
 

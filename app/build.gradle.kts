@@ -8,12 +8,12 @@ plugins {
 
 android {
     namespace = "ru.zhogin.listtodo"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "ru.zhogin.listtodo"
         minSdk = 24
-        targetSdk = 34
+        targetSdk = 36
         versionCode = 1
         versionName = "1.0"
 
@@ -74,4 +74,5 @@ dependencies {
     implementation(project(":app-tasks"))
     implementation(project(":app-done"))
     implementation(project(":app-settings"))
+    implementation(project(":common"))
 }

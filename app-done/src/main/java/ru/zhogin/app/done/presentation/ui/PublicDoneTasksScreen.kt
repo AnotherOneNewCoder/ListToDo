@@ -15,13 +15,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import com.zhogin.common.R
+import com.zhogin.common.ui.components.ActionImage
+import com.zhogin.common.ui.components.PublicNotDoneTaskItem
+import com.zhogin.common.ui.components.SwipableItemWithActions
+import com.zhogin.common.ui.models.TaskUI
 import ru.zhogin.app.done.presentation.event.PublicDoneTasksListEvent
 import ru.zhogin.app.done.presentation.state.PublicDoneTasksListState
-import ru.zhogin.app.tasks.R
-import ru.zhogin.app.tasks.presentation.models.TaskUI
-import ru.zhogin.app.tasks.presentation.ui.components.ActionImage
-import ru.zhogin.app.tasks.presentation.ui.components.PublicNotDoneTaskItem
-import ru.zhogin.app.tasks.presentation.ui.components.SwipableItemWithActions
+
 import ru.zhogin.app_settings.presentation.state.ColorsState
 
 

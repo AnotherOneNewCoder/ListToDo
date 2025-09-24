@@ -1,6 +1,7 @@
 package ru.zhogin.app.tasks.presentation.state
 
-import ru.zhogin.app.tasks.presentation.models.TaskUI
+import com.zhogin.common.ui.models.TaskUI
+
 
 data class PublicTasksListState(
     val tasks: List<TaskUI> = emptyList(),
