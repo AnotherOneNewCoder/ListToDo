@@ -22,6 +22,8 @@ serialization-json = "1.9.0"
 foundationAndroid = "1.9.1"
 
 
+
+
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -59,6 +61,8 @@ androidx-datastore = { module = "androidx.datastore:datastore-preferences", vers
 
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serialization-json" }
 androidx-foundation-android = { group = "androidx.compose.foundation", name = "foundation-android", version.ref = "foundationAndroid" }
+
+
 
 
 

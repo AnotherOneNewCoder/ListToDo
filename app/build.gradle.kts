@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.dagger.hilt.android)
     alias(libs.plugins.kapt)
+    alias(libs.plugins.kotlinSerialization)
 }
 
 android {
@@ -69,6 +70,7 @@ dependencies {
     kapt(libs.dagger.hilt.compiler)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
 
     implementation(project(":app-uikit"))
     implementation(project(":app-tasks"))
