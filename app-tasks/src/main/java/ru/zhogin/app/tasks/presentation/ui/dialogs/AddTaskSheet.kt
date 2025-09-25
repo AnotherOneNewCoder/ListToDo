@@ -47,10 +47,11 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
-import ru.zhogin.app.tasks.R
+import com.zhogin.common.R
+import com.zhogin.common.ui.models.TaskUI
+
 import ru.zhogin.app.tasks.presentation.alarm.setAlarm
 import ru.zhogin.app.tasks.presentation.event.PublicTasksListEvent
-import ru.zhogin.app.tasks.presentation.models.TaskUI
 import ru.zhogin.app.tasks.presentation.state.PublicTasksListState
 import ru.zhogin.app.tasks.presentation.ui.components.ReminderView
 import ru.zhogin.app.tasks.presentation.ui.components.TaskTextField

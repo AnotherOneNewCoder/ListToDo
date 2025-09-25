@@ -12,12 +12,13 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import com.google.gson.Gson
+import com.zhogin.common.R
+import com.zhogin.common.ui.mapper.toTask
+import com.zhogin.common.ui.models.TaskUI
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.runBlocking
-import ru.zhogin.app.tasks.R
-import ru.zhogin.app.tasks.common.toTask
+
 import ru.zhogin.app.tasks.domain.usecases.UpdatePublicTaskUseCase
-import ru.zhogin.app.tasks.presentation.models.TaskUI
 import javax.inject.Inject
 
 const val DONE = "DONE"

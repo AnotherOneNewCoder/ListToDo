@@ -4,16 +4,17 @@ plugins {
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.dagger.hilt.android)
     alias(libs.plugins.kapt)
+    alias(libs.plugins.kotlinSerialization)
 }
 
 android {
     namespace = "ru.zhogin.listtodo"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "ru.zhogin.listtodo"
         minSdk = 24
-        targetSdk = 34
+        targetSdk = 36
         versionCode = 1
         versionName = "1.0"
 
@@ -70,8 +71,10 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
+
     implementation(project(":app-uikit"))
     implementation(project(":app-tasks"))
     implementation(project(":app-done"))
     implementation(project(":app-settings"))
+    implementation(project(":common"))
 }

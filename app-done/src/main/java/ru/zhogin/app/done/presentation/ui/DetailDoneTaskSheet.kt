@@ -25,10 +25,11 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
+import com.zhogin.common.ui.components.GradientFloatingActionButton
+import com.zhogin.common.ui.components.TaskInfoSection
+import com.zhogin.common.ui.models.TaskUI
 import ru.zhogin.app.done.R
-import ru.zhogin.app.tasks.presentation.models.TaskUI
-import ru.zhogin.app.tasks.presentation.ui.components.GradientFloatingActionButton
-import ru.zhogin.app.tasks.presentation.ui.components.TaskInfoSection
+
 import ru.zhogin.app.uikit.Title1
 import ru.zhogin.app_settings.presentation.state.ColorsState
 

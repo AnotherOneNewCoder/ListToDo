@@ -1,12 +1,13 @@
 package ru.zhogin.app.tasks.data.repository
 
+import com.zhogin.common.data.db.PublicTasksDatabase
+import com.zhogin.common.data.mapper.toTask
+import com.zhogin.common.data.mapper.toTaskDbo
+import com.zhogin.common.domain.Task
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.map
-import ru.zhogin.app.tasks.common.toTask
-import ru.zhogin.app.tasks.common.toTaskDbo
-import ru.zhogin.app.tasks.data.db.PublicTasksDatabase
-import ru.zhogin.app.tasks.domain.models.Task
+
 import ru.zhogin.app.tasks.domain.repository.PublicTasksRepository
 import javax.inject.Inject
 

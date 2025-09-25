@@ -34,8 +34,10 @@ internal fun BottomBar(
     colorState: ColorsState,
 ) {
     NavigationBar(
-        modifier = Modifier.background(
-            colorState.backgroundColor).clip(RoundedCornerShape(topStart = 20.dp, topEnd = 20.dp)).border(0.5.dp,colorState.borderColor,RoundedCornerShape(topStart = 20.dp, topEnd = 20.dp) ),
+        modifier = Modifier
+            .background(colorState.backgroundColor)
+            .clip(RoundedCornerShape(topStart = 20.dp, topEnd = 20.dp))
+            .border(0.5.dp,colorState.borderColor,RoundedCornerShape(topStart = 20.dp, topEnd = 20.dp) ),
         containerColor = colorState.backgroundCardColor
     ) {
         val items = listOf(

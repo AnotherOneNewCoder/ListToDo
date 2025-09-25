@@ -15,9 +15,9 @@
             <option value="$PROJECT_DIR$/app-settings" />
             <option value="$PROJECT_DIR$/app-tasks" />
             <option value="$PROJECT_DIR$/app-uikit" />
+            <option value="$PROJECT_DIR$/common" />
           </set>
         </option>
-        <option name="resolveExternalAnnotations" value="false" />
       </GradleProjectSettings>
     </option>
   </component>

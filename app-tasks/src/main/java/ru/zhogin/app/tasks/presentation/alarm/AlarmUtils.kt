@@ -5,7 +5,7 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import com.google.gson.Gson
-import ru.zhogin.app.tasks.presentation.models.TaskUI
+import com.zhogin.common.ui.models.TaskUI
 
 const val TASK = "TASK"
 

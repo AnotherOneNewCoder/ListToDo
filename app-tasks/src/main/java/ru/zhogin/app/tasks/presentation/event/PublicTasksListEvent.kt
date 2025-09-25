@@ -1,6 +1,7 @@
 package ru.zhogin.app.tasks.presentation.event
 
-import ru.zhogin.app.tasks.presentation.models.TaskUI
+import com.zhogin.common.ui.models.TaskUI
+
 
 sealed interface PublicTasksListEvent {
     data object OnAddNewPublicTaskClick: PublicTasksListEvent

@@ -27,6 +27,16 @@ import ru.zhogin.app.uikit.HintColor
 import ru.zhogin.app.uikit.SecondGradientColor
 import ru.zhogin.app.uikit.TextColor
 import ru.zhogin.app.uikit.ThirdGradientColor
+import ru.zhogin.app_settings.core.Constants.BACKGROUND_COLOR
+import ru.zhogin.app_settings.core.Constants.BADGE_COLOR
+import ru.zhogin.app_settings.core.Constants.BORDER_COLOR
+import ru.zhogin.app_settings.core.Constants.CARD_COLOR
+import ru.zhogin.app_settings.core.Constants.FIRST_GRADIENT_COLOR
+import ru.zhogin.app_settings.core.Constants.FOURTH_GRADIENT_COLOR
+import ru.zhogin.app_settings.core.Constants.HINT_COLOR
+import ru.zhogin.app_settings.core.Constants.SECOND_GRADIENT_COLOR
+import ru.zhogin.app_settings.core.Constants.TEXT_COLOR
+import ru.zhogin.app_settings.core.Constants.THIRD_GRADIENT_COLOR
 import ru.zhogin.app_settings.data.model.SettingsData
 import ru.zhogin.app_settings.domain.DataStoreManager
 import ru.zhogin.app_settings.presentation.event.ColorPickEvent
@@ -140,7 +150,11 @@ class ColorViewModel @Inject constructor(
                         isColorPickerSheetOpen = false,
                     )
                 }
-
+                viewModelScope.launch {
+                    dataStoreManager.saveColor(
+                        BACKGROUND_COLOR, event.color.toArgb()
+                    )
+                }
             }
 
             is ColorPickEvent.ChangeBackgroundCardColor -> {
@@ -148,6 +162,11 @@ class ColorViewModel @Inject constructor(
                     _state.value.copy(
                         backgroundCardColor = event.color,
                         isColorPickerSheetOpen = false,
+                    )
+                }
+                viewModelScope.launch {
+                    dataStoreManager.saveColor(
+                        CARD_COLOR, event.color.toArgb()
                     )
                 }
             }
@@ -159,6 +178,11 @@ class ColorViewModel @Inject constructor(
                         isColorPickerSheetOpen = false,
                     )
                 }
+                viewModelScope.launch {
+                    dataStoreManager.saveColor(
+                        BADGE_COLOR, event.color.toArgb()
+                    )
+                }
             }
 
             is ColorPickEvent.ChangeBorderColor -> {
@@ -166,6 +190,11 @@ class ColorViewModel @Inject constructor(
                     _state.value.copy(
                         borderColor = event.color,
                         isColorPickerSheetOpen = false,
+                    )
+                }
+                viewModelScope.launch {
+                    dataStoreManager.saveColor(
+                        BORDER_COLOR, event.color.toArgb()
                     )
                 }
             }
@@ -177,6 +206,11 @@ class ColorViewModel @Inject constructor(
                         isColorPickerSheetOpen = false,
                     )
                 }
+                viewModelScope.launch {
+                    dataStoreManager.saveColor(
+                        FIRST_GRADIENT_COLOR, event.color.toArgb()
+                    )
+                }
             }
 
             is ColorPickEvent.ChangeHintColor -> {
@@ -184,6 +218,11 @@ class ColorViewModel @Inject constructor(
                     _state.value.copy(
                         hintColor = event.color,
                         isColorPickerSheetOpen = false,
+                    )
+                }
+                viewModelScope.launch {
+                    dataStoreManager.saveColor(
+                        HINT_COLOR, event.color.toArgb()
                     )
                 }
             }
@@ -195,6 +234,11 @@ class ColorViewModel @Inject constructor(
                         isColorPickerSheetOpen = false,
                     )
                 }
+                viewModelScope.launch {
+                    dataStoreManager.saveColor(
+                        SECOND_GRADIENT_COLOR, event.color.toArgb()
+                    )
+                }
             }
 
             is ColorPickEvent.ChangeTextColor -> {
@@ -202,6 +246,11 @@ class ColorViewModel @Inject constructor(
                     _state.value.copy(
                         textColor = event.color,
                         isColorPickerSheetOpen = false,
+                    )
+                }
+                viewModelScope.launch {
+                    dataStoreManager.saveColor(
+                        TEXT_COLOR, event.color.toArgb()
                     )
                 }
             }
@@ -213,6 +262,11 @@ class ColorViewModel @Inject constructor(
                         isColorPickerSheetOpen = false,
                     )
                 }
+                viewModelScope.launch {
+                    dataStoreManager.saveColor(
+                        FOURTH_GRADIENT_COLOR, event.color.toArgb()
+                    )
+                }
             }
 
             is ColorPickEvent.ChangeThirdGradientColor -> {
@@ -220,6 +274,11 @@ class ColorViewModel @Inject constructor(
                     _state.value.copy(
                         thirdGradientColor = event.color,
                         isColorPickerSheetOpen = false,
+                    )
+                }
+                viewModelScope.launch {
+                    dataStoreManager.saveColor(
+                        THIRD_GRADIENT_COLOR, event.color.toArgb()
                     )
                 }
             }

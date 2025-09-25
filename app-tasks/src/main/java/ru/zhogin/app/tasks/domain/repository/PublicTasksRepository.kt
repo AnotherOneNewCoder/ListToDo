@@ -1,7 +1,8 @@
 package ru.zhogin.app.tasks.domain.repository
 
+import com.zhogin.common.domain.Task
 import kotlinx.coroutines.flow.Flow
-import ru.zhogin.app.tasks.domain.models.Task
+
 
 interface PublicTasksRepository {
     fun getAllPublicNotDoneTasksByDate(): Flow<List<Task>>

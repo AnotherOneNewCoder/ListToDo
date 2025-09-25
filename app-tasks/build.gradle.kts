@@ -3,14 +3,13 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.dagger.hilt.android)
     alias(libs.plugins.kapt)
-    alias(libs.plugins.ksp)
     alias(libs.plugins.compose.compiler)
-    alias(libs.plugins.androidx.room)
+
 }
 
 android {
     namespace = "ru.zhogin.app.tasks"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         minSdk = 24
@@ -35,9 +34,7 @@ android {
     kotlinOptions {
         jvmTarget = "17"
     }
-    room {
-        schemaDirectory("$projectDir/schemas")
-    }
+
 
 }
 
@@ -56,10 +53,9 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodule.ktx)
     implementation(libs.androidx.lifecycle.viewmodule.compose)
     implementation(libs.google.code.gson)
-    implementation(project(":app-settings"))
     kapt(libs.dagger.hilt.compiler)
-    ksp(libs.androidx.room.compiler)
-    api(libs.androidx.room.ktx)
+    implementation(project(":app-settings"))
     implementation(project(":app-uikit"))
+    implementation(project(":common"))
 
 }

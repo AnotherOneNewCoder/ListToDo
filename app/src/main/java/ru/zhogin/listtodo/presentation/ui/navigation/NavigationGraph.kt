@@ -16,11 +16,11 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.zhogin.common.ui.models.TaskUI
 import ru.zhogin.app.done.presentation.event.PublicDoneTasksListEvent
 import ru.zhogin.app.done.presentation.state.PublicDoneTasksListState
 import ru.zhogin.app.done.presentation.ui.PublicDoneTasksScreen
 import ru.zhogin.app.tasks.presentation.event.PublicTasksListEvent
-import ru.zhogin.app.tasks.presentation.models.TaskUI
 import ru.zhogin.app.tasks.presentation.state.PublicTasksListState
 import ru.zhogin.app.tasks.presentation.ui.screens.PublicNotDoneTaskScreen
 import ru.zhogin.app_settings.presentation.event.ColorPickEvent

@@ -2,6 +2,8 @@ package ru.zhogin.app.done.presentation.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.zhogin.common.ui.mapper.toTask
+import com.zhogin.common.ui.mapper.toTaskUi
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -14,8 +16,7 @@ import ru.zhogin.app.done.domain.usecases.DeletePublicDoneTaskUseCase
 import ru.zhogin.app.done.domain.usecases.GetAllPublicDoneTasksByDateUseCase
 import ru.zhogin.app.done.presentation.event.PublicDoneTasksListEvent
 import ru.zhogin.app.done.presentation.state.PublicDoneTasksListState
-import ru.zhogin.app.tasks.common.toTask
-import ru.zhogin.app.tasks.common.toTaskUi
+
 import javax.inject.Inject
 
 @HiltViewModel

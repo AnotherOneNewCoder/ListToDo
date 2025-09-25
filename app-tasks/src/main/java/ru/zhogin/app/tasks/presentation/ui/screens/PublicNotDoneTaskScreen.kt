@@ -23,15 +23,17 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import ru.zhogin.app.tasks.R
+import com.zhogin.common.R
+import com.zhogin.common.ui.components.ActionImage
+import com.zhogin.common.ui.components.GradientFloatingActionButton
+import com.zhogin.common.ui.components.PublicNotDoneTaskItem
+import com.zhogin.common.ui.components.SwipableItemWithActions
+import com.zhogin.common.ui.models.TaskUI
+
 import ru.zhogin.app.tasks.presentation.alarm.cancelAlarm
 import ru.zhogin.app.tasks.presentation.event.PublicTasksListEvent
-import ru.zhogin.app.tasks.presentation.models.TaskUI
 import ru.zhogin.app.tasks.presentation.state.PublicTasksListState
-import ru.zhogin.app.tasks.presentation.ui.components.ActionImage
-import ru.zhogin.app.tasks.presentation.ui.components.GradientFloatingActionButton
-import ru.zhogin.app.tasks.presentation.ui.components.PublicNotDoneTaskItem
-import ru.zhogin.app.tasks.presentation.ui.components.SwipableItemWithActions
+
 import ru.zhogin.app.tasks.presentation.ui.dialogs.AddTaskSheet
 import ru.zhogin.app.tasks.presentation.ui.dialogs.DetailTaskSheet
 import ru.zhogin.app_settings.presentation.state.ColorsState

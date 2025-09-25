@@ -3,13 +3,12 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.dagger.hilt.android)
     alias(libs.plugins.kapt)
-    alias(libs.plugins.ksp)
     alias(libs.plugins.compose.compiler)
 }
 
 android {
     namespace = "ru.zhogin.app.done"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         minSdk = 24
@@ -51,9 +50,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodule.ktx)
     implementation(libs.androidx.lifecycle.viewmodule.compose)
     kapt(libs.dagger.hilt.compiler)
-    ksp(libs.androidx.room.compiler)
-    api(libs.androidx.room.ktx)
     implementation(project(":app-uikit"))
-    implementation(project(":app-tasks"))
+    implementation(project(":common"))
     implementation(project(":app-settings"))
 }

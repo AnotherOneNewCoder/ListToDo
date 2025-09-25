@@ -65,4 +65,42 @@ class DataStoreManagerImpl @Inject constructor(
             fourthGradientColor = pref[intPreferencesKey(FOURTH_GRADIENT_COLOR)] ?: FourthGradientColor.toArgb(),
         )
     }
+
+    override suspend fun saveColor(key: String, color: Int) {
+        context.dataStore.edit { pref ->
+            when(key) {
+                BACKGROUND_COLOR -> {
+                    pref[intPreferencesKey(BACKGROUND_COLOR)] = color
+                }
+                CARD_COLOR -> {
+                    pref[intPreferencesKey(CARD_COLOR)] = color
+                }
+                BORDER_COLOR -> {
+                    pref[intPreferencesKey(BORDER_COLOR)] = color
+                }
+                TEXT_COLOR -> {
+                    pref[intPreferencesKey(TEXT_COLOR)] = color
+                }
+                HINT_COLOR -> {
+                    pref[intPreferencesKey(HINT_COLOR)] = color
+                }
+                BADGE_COLOR -> {
+                    pref[intPreferencesKey(BADGE_COLOR)] = color
+                }
+                FIRST_GRADIENT_COLOR -> {
+                    pref[intPreferencesKey(FIRST_GRADIENT_COLOR)] = color
+                }
+                SECOND_GRADIENT_COLOR -> {
+                    pref[intPreferencesKey(SECOND_GRADIENT_COLOR)] = color
+                }
+                THIRD_GRADIENT_COLOR -> {
+                    pref[intPreferencesKey(THIRD_GRADIENT_COLOR)] = color
+                }
+                FOURTH_GRADIENT_COLOR -> {
+                    pref[intPreferencesKey(FOURTH_GRADIENT_COLOR)] = color
+                }
+                else -> {}
+            }
+        }
+    }
 }
